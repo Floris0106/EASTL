@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------------------
 include(CTest)
 
-add_definitions(-DEASTL_THREAD_SUPPORT_AVAILABLE=0)
-
 if (MSVC)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 endif()
