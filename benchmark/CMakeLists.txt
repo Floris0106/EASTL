@@ -3,8 +3,8 @@
 #-------------------------------------------------------------------------------------------
 include(CTest)
 
-include_directories(source)
-include_directories(../test/source)
+include_directories(src)
+include_directories(../test/src)
 
 # Libstdc++ calls new internally, since DLLs have no weak symbols, runtime symbol resolution fails and EASTL's new is not called.
 # Linking against static libstdc++ fixes this.
@@ -23,9 +23,9 @@ if (EASTL_NO_CHAR8T_FLAG)
     add_compile_options(${EASTL_NO_CHAR8T_FLAG})
 endif()
 
-file(GLOB EASTLBENCHMARK_SOURCES "source/*.cpp")
-file(GLOB EASTLTEST_SOURCES "../test/source/EASTLTestAllocator.cpp" "../test/source/EASTLTest.cpp")
-file(GLOB EASTLBENCHMARK_HEADERS "source/*.h")
+file(GLOB EASTLBENCHMARK_SOURCES "src/*.cpp")
+file(GLOB EASTLTEST_SOURCES "../test/src/EASTLTestAllocator.cpp" "../test/src/EASTLTest.cpp")
+file(GLOB EASTLBENCHMARK_HEADERS "src/*.h")
 set(SOURCES ${EASTLBENCHMARK_SOURCES} ${EASTLTEST_SOURCES} ${EASTLBENCHMARK_HEADERS})
 
 add_definitions(-DEASTL_THREAD_SUPPORT_AVAILABLE=0)

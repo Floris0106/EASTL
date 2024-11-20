@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------------------
 # Copyright (C) Electronic Arts Inc.  All rights reserved.
 #-------------------------------------------------------------------------------------------
-file(GLOB EAASSERT_SOURCES "source/*.cpp")
+file(GLOB EAASSERT_SOURCES "src/*.cpp")
 add_library(EAAssert ${EAASSERT_SOURCES})
 
 target_include_directories(EAAssert PUBLIC include)

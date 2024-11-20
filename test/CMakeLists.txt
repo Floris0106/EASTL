@@ -17,13 +17,13 @@ if (EASTL_NO_CHAR8T_FLAG)
     add_compile_options(${EASTL_NO_CHAR8T_FLAG})
 endif()
 
-file(GLOB EASTLTEST_SOURCES "source/*.cpp")
-file(GLOB EASTLTEST_HEADERS "source/*.inl" "source/*.h")
+file(GLOB EASTLTEST_SOURCES "src/*.cpp")
+file(GLOB EASTLTEST_HEADERS "src/*.inl" "src/*.h")
 set(SOURCES ${EASTLTEST_SOURCES} ${EASTLTEST_HEADERS})
 
 if (EASTL_CHAR8T_FLAG)
     message(STATUS "Building with char8_t support in tests.")
-    set_source_files_properties("source/TestString.cpp" "source/TestStringView.cpp" PROPERTIES
+    set_source_files_properties("src/TestString.cpp" "src/TestStringView.cpp" PROPERTIES
         COMPILE_FLAGS ${EASTL_CHAR8T_FLAG}
         COMPILE_DEFINITIONS "EASTL_EXPECT_CHAR8T_SUPPORT"
     )

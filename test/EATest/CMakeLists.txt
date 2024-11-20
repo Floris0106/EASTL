@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------------------
 # Copyright (C) Electronic Arts Inc.  All rights reserved.
 #-------------------------------------------------------------------------------------------
-file(GLOB EATEST_SOURCES "source/*.cpp")
+file(GLOB EATEST_SOURCES "src/*.cpp")
 add_library(EATest ${EATEST_SOURCES})
 
 target_include_directories(EATest PUBLIC include)
