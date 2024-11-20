@@ -7,7 +7,6 @@
 #include <EASTL/allocator.h>
 #include <EASTL/allocator_malloc.h>
 #include <EASTL/fixed_allocator.h>
-#include <EASTL/core_allocator_adapter.h>
 #include <EASTL/list.h>
 #include <EAStdC/EAString.h>
 #include <EAStdC/EAAlignment.h>
@@ -243,38 +242,6 @@ static int TestAllocatorMalloc()
 	void* operator new[](size_t size, size_t alignment, size_t alignmentOffset, const char* pName, int flags, unsigned debugFlags, const char* file, int line);
 #endif
 
-
-struct EASTLTestCoreAllocator
-{
-public:
-	void* Alloc(size_t size, const char* name, unsigned int flags)
-	{
-		return ::operator new[](size, name, flags, 0, __FILE__, __LINE__);
-	}
-
-	void* Alloc(size_t size, const char* name, unsigned int flags,
-				 unsigned int alignment, unsigned int alignOffset = 0)
-	{
-		return ::operator new[](size, alignment, alignOffset, name, flags, 0, __FILE__, __LINE__);
-	}
-
-	void Free(void* p, size_t /*size*/ = 0)
-	{
-		::operator delete((char*)p);
-	}
-
-	static EASTLTestCoreAllocator* GetDefaultAllocator();
-};
-
-EASTLTestCoreAllocator gEASTLTestCoreAllocator;
-
-EASTLTestCoreAllocator* EASTLTestCoreAllocator::GetDefaultAllocator()
-{
-	return &gEASTLTestCoreAllocator;
-}
-
-
-
 struct TestClass
 {
 	mutable int mX;
@@ -293,33 +260,6 @@ struct TestClass
 	int MultiplyByConst(int x) const
 		{ return mX * x; }
 };
-
-///////////////////////////////////////////////////////////////////////////////
-// TestCoreAllocatorAdapter
-//
-static int TestCoreAllocatorAdapter()
-{
-	int nErrorCount = 0;
-	
-#if EASTL_CORE_ALLOCATOR_ENABLED
-	typedef EA::Allocator::CoreAllocatorAdapter<EASTLTestCoreAllocator> Adapter;
-
-	eastl::list<TestClass, Adapter> widgetList(Adapter("UI/WidgetList", &gEASTLTestCoreAllocator));
-	widgetList.push_back(TestClass());
-	EATEST_VERIFY(widgetList.size() == 1);
-
-	eastl::vector<TestClass, Adapter> widgetVector(100, Adapter("UI/WidgetVector", &gEASTLTestCoreAllocator));
-	widgetVector.push_back(TestClass());
-	EATEST_VERIFY(widgetVector.size() == 101);
-
-	eastl::vector<TestClass, Adapter> widgetVector2(widgetVector);
-	widgetVector2.resize(400);
-	EATEST_VERIFY(widgetVector2.size() == 400);
-#endif
-
-	return nErrorCount;
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // TestSwapAllocator
@@ -386,7 +326,6 @@ int TestAllocator()
 	nErrorCount += TestAllocationOffsetAndAlignment();
 	nErrorCount += TestFixedAllocator();
 	nErrorCount += TestAllocatorMalloc();
-	nErrorCount += TestCoreAllocatorAdapter();
 	nErrorCount += TestSwapAllocator();
 
 	return nErrorCount;

@@ -8,8 +8,6 @@
 #include "GetTypeName.h"
 #include <EAStdC/EAString.h>
 #include <EAStdC/EAStopwatch.h>
-#include <EASTL/core_allocator_adapter.h>
-#include <EASTL/core_allocator.h>
 #include <EASTL/intrusive_ptr.h>
 #include <EASTL/linked_array.h>
 #include <EASTL/linked_ptr.h>
@@ -588,32 +586,6 @@ static int Test_unique_ptr()
 		uptr[0].mpUPtr = &uptr;
 		uptr.reset();
 		EATEST_VERIFY(CheckUPtrArrayEmptyInDestructor::mCheckUPtrEmpty);
-	}
-
-	{
-		#if EASTL_CORE_ALLOCATOR_ENABLED
-			// Test EA::Allocator::EASTLICoreDeleter usage within eastl::shared_ptr.
-			// http://en.cppreference.com/w/cpp/memory/shared_ptr/shared_ptr
-
-			// Consider the following for standards compliance.
-			// eastl::shared_ptr<A, EASTLCoreDeleterAdapter> foo(pA, EASTLCoreDeleterAdapter());
-
-			const int cacheAllocationCount = gEASTLTest_AllocationCount;
-
-			using namespace EA::Allocator;
-
-			EASTLCoreAllocatorAdapter ta;
-			void* pMem = ta.allocate(sizeof(A));
-
-			EATEST_VERIFY(pMem != nullptr);     
-			EATEST_VERIFY(gEASTLTest_AllocationCount > cacheAllocationCount);
-			{            
-				A* pA = new (pMem) A();
-				eastl::shared_ptr<A> foo(pA, EASTLCoreDeleterAdapter());  // Not standards complaint code.  Update EASTL implementation to provide the type of the deleter.
-			}
-			EATEST_VERIFY(gEASTLTest_AllocationCount == cacheAllocationCount);
-			EATEST_VERIFY(A::mCount == 0);
-		#endif
 	}
 
 	{

@@ -68,7 +68,6 @@ namespace eastl
 #include <EASTL/hash_set.h>
 #include <EASTL/random.h>
 #include <EASTL/bit.h>
-#include <EASTL/core_allocator_adapter.h>
 #include <EASTL/bonus/call_traits.h>
 #include <EASTL/bonus/compressed_pair.h>
 #include <EASTL/bonus/adaptors.h>
