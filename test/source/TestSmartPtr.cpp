@@ -8,7 +8,6 @@
 #include "GetTypeName.h"
 #include <EAStdC/EAString.h>
 #include <EAStdC/EAStopwatch.h>
-#include <EASTL/atomic.h>
 #include <EASTL/core_allocator_adapter.h>
 #include <EASTL/core_allocator.h>
 #include <EASTL/intrusive_ptr.h>
@@ -26,6 +25,7 @@
 EA_DISABLE_ALL_VC_WARNINGS()
 #include <stdio.h>
 #include <string.h>
+#include <atomic>
 #ifdef EA_PLATFORM_WINDOWS
 	#ifndef WIN32_LEAN_AND_MEAN
 		#define WIN32_LEAN_AND_MEAN
@@ -1384,7 +1384,7 @@ static int Test_shared_ptr()
 	{
 		EA::Thread::ThreadParameters    mThreadParams;
 		EA::Thread::Thread              mThread;
-		eastl::atomic<bool>             mbShouldContinue;
+		std::atomic_bool                mbShouldContinue;
 		int                             mnErrorCount;
 		eastl::shared_ptr<TestObject>*  mpSPTO;
 		eastl::weak_ptr<TestObject>*    mpWPTO;
@@ -1397,7 +1397,7 @@ static int Test_shared_ptr()
 		{
 			int& nErrorCount = mnErrorCount; // declare nErrorCount so that EATEST_VERIFY can work, as it depends on it being declared.
 
-			while(mbShouldContinue.load(eastl::memory_order_relaxed))
+			while(mbShouldContinue.load(std::memory_order_relaxed))
 			{
 				EA::UnitTest::ThreadSleepRandom(1, 10);
 
@@ -1470,46 +1470,46 @@ static int Test_shared_ptr_thread()
 
 			shared_ptr<TestObject> spTO(new TestObject(55));
 
-			// bool atomic_is_lock_free(const shared_ptr<T>*);
-			EATEST_VERIFY(!atomic_is_lock_free(&spTO));
+			// bool std::atomic_is_lock_free(const shared_ptr<T>*);
+			EATEST_VERIFY(!std::atomic_is_lock_free(&spTO));
 
-			// shared_ptr<T> atomic_load(const shared_ptr<T>* pSharedPtr);
-			// shared_ptr<T> atomic_load_explicit(const shared_ptr<T>* pSharedPtr, ... /*std::memory_order memoryOrder*/);
-			shared_ptr<TestObject> spTO2 = atomic_load(&spTO);
+			// shared_ptr<T> std::atomic_load(const shared_ptr<T>* pSharedPtr);
+			// shared_ptr<T> std::atomic_load_explicit(const shared_ptr<T>* pSharedPtr, ... /*std::memory_order memoryOrder*/);
+			shared_ptr<TestObject> spTO2 = std::atomic_load(&spTO);
 			EATEST_VERIFY(spTO->mX == 55);
 			EATEST_VERIFY(spTO2->mX == 55);
 
-			// void atomic_store(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB);
-			// void atomic_store_explicit(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB, ... /*std::memory_order memoryOrder*/);
+			// void std::atomic_store(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB);
+			// void std::atomic_store_explicit(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB, ... /*std::memory_order memoryOrder*/);
 			spTO2->mX = 56;
 			EATEST_VERIFY(spTO->mX == 56);
 			EATEST_VERIFY(spTO2->mX == 56);
 
-			atomic_store(&spTO, shared_ptr<TestObject>(new TestObject(77)));
+			std::atomic_store(&spTO, shared_ptr<TestObject>(new TestObject(77)));
 			EATEST_VERIFY(spTO->mX == 77);
 			EATEST_VERIFY(spTO2->mX == 56);
 
-			// shared_ptr<T> atomic_exchange(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB);
-			// shared_ptr<T> atomic_exchange_explicit(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB, ... /*std::memory_order memoryOrder*/);
-			spTO = atomic_exchange(&spTO2, spTO);
+			// shared_ptr<T> std::atomic_exchange(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB);
+			// shared_ptr<T> std::atomic_exchange_explicit(shared_ptr<T>* pSharedPtrA, shared_ptr<T> sharedPtrB, ... /*std::memory_order memoryOrder*/);
+			spTO = std::atomic_exchange(&spTO2, spTO);
 			EATEST_VERIFY(spTO->mX == 56);
 			EATEST_VERIFY(spTO2->mX == 77);
 			
-			spTO = atomic_exchange_explicit(&spTO2, spTO);
+			spTO = std::atomic_exchange_explicit(&spTO2, spTO);
 			EATEST_VERIFY(spTO->mX == 77);
 			EATEST_VERIFY(spTO2->mX == 56);
 
-			// bool atomic_compare_exchange_strong(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew);
-			// bool atomic_compare_exchange_weak(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew);
-			// bool atomic_compare_exchange_strong_explicit(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew, ... /*memory_order memoryOrderSuccess, memory_order memoryOrderFailure*/);
-			// bool atomic_compare_exchange_weak_explicit(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew, ... /*memory_order memoryOrderSuccess, memory_order memoryOrderFailure*/);
-			shared_ptr<TestObject> spTO3 = atomic_load(&spTO2);
-			bool result = atomic_compare_exchange_strong(&spTO3, &spTO, make_shared<TestObject>(88));   // spTO3 != spTO, so this should do no exchange and return false.
+			// bool std::atomic_compare_exchange_strong(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew);
+			// bool std::atomic_compare_exchange_weak(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew);
+			// bool std::atomic_compare_exchange_strong_explicit(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew, ... /*memory_order memoryOrderSuccess, memory_order memoryOrderFailure*/);
+			// bool std::atomic_compare_exchange_weak_explicit(shared_ptr<T>* pSharedPtr, shared_ptr<T>* pSharedPtrCondition, shared_ptr<T> sharedPtrNew, ... /*memory_order memoryOrderSuccess, memory_order memoryOrderFailure*/);
+			shared_ptr<TestObject> spTO3 = std::atomic_load(&spTO2);
+			bool result = std::atomic_compare_exchange_strong(&spTO3, &spTO, make_shared<TestObject>(88));   // spTO3 != spTO, so this should do no exchange and return false.
 			EATEST_VERIFY(!result);
 			EATEST_VERIFY(spTO3->mX == 56);
 			EATEST_VERIFY(spTO->mX == 56);
 
-			result = atomic_compare_exchange_strong(&spTO3, &spTO2, make_shared<TestObject>(88));       // spTO3 == spTO2, so this should succeed.
+			result = std::atomic_compare_exchange_strong(&spTO3, &spTO2, make_shared<TestObject>(88));       // spTO3 == spTO2, so this should succeed.
 			EATEST_VERIFY(result);
 			EATEST_VERIFY(spTO2->mX == 56);
 			EATEST_VERIFY(spTO3->mX == 88);

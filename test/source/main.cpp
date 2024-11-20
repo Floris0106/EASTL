@@ -149,11 +149,6 @@ int EAMain(int argc, char* argv[])
 	testSuite.AddTest("Vector",					TestVector);
 	testSuite.AddTest("VectorMap",				TestVectorMap);
 	testSuite.AddTest("VectorSet",				TestVectorSet);
-	testSuite.AddTest("AtomicBasic",			TestAtomicBasic);
-#if EASTL_THREAD_SUPPORT_AVAILABLE
-	testSuite.AddTest("AtomicMT",				TestAtomicMultiThreaded);
-#endif
-	testSuite.AddTest("AtomicAsm",				TestAtomicAsm);
 	testSuite.AddTest("Bitcast",				TestBitcast);
 
 
