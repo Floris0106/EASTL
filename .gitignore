@@ -13,14 +13,14 @@ bench.bat
 build.bat
 .p4config
 
-## CMake generated files
+## CMake
 CMakeCache.txt
 cmake_install.cmake
 
 ## Patch files
 *.patch
 
-## For Visual Studio Generated projects
+## Visual Studio
 *.sln
 **/*.vcxproj
 **/*.vcxproj.filters
@@ -41,10 +41,13 @@ build*/*
 Testing/*
 %ALLUSERSPROFILE%/*
 
-# Buck
+## Buck
 /buck-out/
 /.buckd/
 /buckaroo/
 .buckconfig.local
 BUCKAROO_DEPS
 .vscode/settings.json
+
+## JetBrains IDEs
+.idea/
