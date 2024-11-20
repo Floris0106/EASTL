@@ -1763,7 +1763,7 @@ namespace eastl
 		// and the size is zero it will return the number of characters written or if we are using
 		// EAStdC which also does the sane behaviour.
 
-#if !EASTL_OPENSOURCE || defined(EA_PLATFORM_MICROSOFT)
+#if defined(EA_PLATFORM_MICROSOFT)
 		size_type nInitialSize = internalLayout().GetSize();
 		int nReturnValue;
 
@@ -1854,7 +1854,7 @@ namespace eastl
 			va_end(argumentsSaved);
 		#endif
 
-#endif // EASTL_OPENSOURCE
+#endif
 
 		return *this;
 	}

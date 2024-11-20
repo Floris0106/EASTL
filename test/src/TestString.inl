@@ -7,11 +7,7 @@
 // Test StringHash
 // Test exceptions
 
-#if EASTL_OPENSOURCE
-	#define EASTL_SNPRINTF_TESTS_ENABLED 0
-#else
-	#define EASTL_SNPRINTF_TESTS_ENABLED 1
-#endif
+#define EASTL_SNPRINTF_TESTS_ENABLED 0
 
 
 template<typename StringType>

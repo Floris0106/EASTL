@@ -5,9 +5,6 @@
 
 #include "EASTLBenchmark.h"
 #include "EASTLTest.h"
-#if !EASTL_OPENSOURCE
-    #include <PPMalloc/EAGeneralAllocatorDebug.h>
-#endif
 #include <EAStdC/EASprintf.h>
 #include <EAStdC/EAStopwatch.h>
 #include <EAStdC/EAString.h>
@@ -17,26 +14,6 @@
 EA_DISABLE_VC_WARNING(4946)
 #include "EAMain/EAEntryPointMain.inl"
 #include "EASTLTestAllocator.h"
-
-
-///////////////////////////////////////////////////////////////////////////////
-// gpEAGeneralAllocator / gpEAGeneralAllocatorDebug
-//
-#if !EASTL_OPENSOURCE
-namespace EA
-{
-	namespace Allocator
-	{
-		#ifdef EA_DEBUG
-			extern         GeneralAllocatorDebug  gGeneralAllocator;
-			extern PPM_API GeneralAllocatorDebug* gpEAGeneralAllocatorDebug;
-		#else
-			extern         GeneralAllocator       gGeneralAllocator;
-			extern PPM_API GeneralAllocator*      gpEAGeneralAllocator;
-		#endif
-	}
-}
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////

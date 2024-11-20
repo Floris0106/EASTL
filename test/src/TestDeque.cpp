@@ -870,38 +870,30 @@ int TestDeque()
 	}
 
 	{
-	#ifndef EASTL_OPENSOURCE
-		auto prevAllocCount = gEASTLTest_AllocationCount;
-	#endif
+		EA_DISABLE_VC_WARNING(4625 4626)
+		struct a
 		{
-			EA_DISABLE_VC_WARNING(4625 4626)
-			struct a
-			{
-				a(int* p)
-					: ptr(p) { }
+			a(int* p)
+				: ptr(p) { }
 
-				eastl::unique_ptr<int> ptr;
-			};
-			EA_RESTORE_VC_WARNING()
+			eastl::unique_ptr<int> ptr;
+		};
+		EA_RESTORE_VC_WARNING()
 
-			EASTL_INTERNAL_DISABLE_DEPRECATED() // 'eastl::has_trivial_relocate<TestDeque::a>': was declared deprecated
-			static_assert(eastl::has_trivial_relocate<a>::value == false, "failure");
-			EASTL_INTERNAL_RESTORE_DEPRECATED()
-			static_assert(eastl::is_trivial<a>::value == false, "failure");
-			static_assert(eastl::is_trivially_constructible<a>::value == false, "failure");
-			static_assert(eastl::is_trivially_copyable<a>::value == false, "failure");
+		EASTL_INTERNAL_DISABLE_DEPRECATED() // 'eastl::has_trivial_relocate<TestDeque::a>': was declared deprecated
+		static_assert(eastl::has_trivial_relocate<a>::value == false, "failure");
+		EASTL_INTERNAL_RESTORE_DEPRECATED()
+		static_assert(eastl::is_trivial<a>::value == false, "failure");
+		static_assert(eastl::is_trivially_constructible<a>::value == false, "failure");
+		static_assert(eastl::is_trivially_copyable<a>::value == false, "failure");
 
-			eastl::deque<a> d;
+		eastl::deque<a> d;
 
-			EATEST_VERIFY(*d.emplace_back(new int(1)).ptr == 1);
-			EATEST_VERIFY(*d.emplace_back(new int(2)).ptr == 2);
-			EATEST_VERIFY(*d.emplace_back(new int(3)).ptr == 3);
+		EATEST_VERIFY(*d.emplace_back(new int(1)).ptr == 1);
+		EATEST_VERIFY(*d.emplace_back(new int(2)).ptr == 2);
+		EATEST_VERIFY(*d.emplace_back(new int(3)).ptr == 3);
 
-			d.erase(d.begin() + 1);
-		}
-	#ifndef EASTL_OPENSOURCE
-		EATEST_VERIFY(gEASTLTest_AllocationCount == prevAllocCount);
-	#endif
+		d.erase(d.begin() + 1);
 	}
 
 

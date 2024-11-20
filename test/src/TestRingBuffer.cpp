@@ -1163,17 +1163,11 @@ int TestRingBuffer()
 			for (int i = 0; i < MAX_ELEMENTS; i++)
 				intBuffer.push_back(i);
 
-		#if !EASTL_OPENSOURCE
-			const auto cacheAllocationCount = gEASTLTest_TotalAllocationCount;
-		#endif
 			const auto cacheMallocatorCount = MallocAllocator::mAllocCountAll;
 			const auto forceReAllocSize = intBuffer.size() * 2;
 
 			intBuffer.resize(forceReAllocSize);
 
-		#if !EASTL_OPENSOURCE
-			VERIFY(cacheAllocationCount == gEASTLTest_TotalAllocationCount);
-		#endif
 			VERIFY(cacheMallocatorCount <  MallocAllocator::mAllocCountAll);
 			VERIFY(CountingAllocator::neverUsed());
 		}
