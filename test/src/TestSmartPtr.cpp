@@ -9,11 +9,7 @@
 #include <EAStdC/EAString.h>
 #include <EAStdC/EAStopwatch.h>
 #include <EASTL/intrusive_ptr.h>
-#include <EASTL/linked_array.h>
-#include <EASTL/linked_ptr.h>
 #include <EASTL/safe_ptr.h>
-#include <EASTL/scoped_array.h>
-#include <EASTL/scoped_ptr.h>
 #include <EASTL/shared_array.h>
 #include <EASTL/shared_ptr.h>
 #include <EASTL/unique_ptr.h>
@@ -419,8 +415,6 @@ namespace SmartPtrTest
 
 	bool CheckUPtrArrayEmptyInDestructor::mCheckUPtrEmpty = false;
 } // namespace SmartPtrTest
-
-
 
 
 static int Test_unique_ptr()
@@ -834,140 +828,7 @@ static int Test_unique_ptr()
 }
 
 
-static int Test_scoped_ptr()
-{
-	using namespace SmartPtrTest;
-	using namespace eastl;
 
-	int nErrorCount(0);
-
-	{
-		EATEST_VERIFY(A::mCount == 0);
-
-		scoped_ptr<int> pT1(new int(5));
-		EATEST_VERIFY(*pT1 == 5);
-
-		*pT1 = 3;
-		EATEST_VERIFY(*pT1 == 3);
-		EATEST_VERIFY(pT1.get() == get_pointer(pT1));
-
-		scoped_ptr<A> pT2(new A(1));
-		EATEST_VERIFY(pT2->mc == 1);
-		EATEST_VERIFY(A::mCount == 1);
-
-		pT2.reset(new A(2));
-		EATEST_VERIFY(pT2->mc == 2);
-
-		pT2.reset(0);
-		EATEST_VERIFY(pT2.get() == (A*)0);
-		EATEST_VERIFY(pT2.get() == get_pointer(pT2));
-
-		pT2.reset(new A(3));
-		EATEST_VERIFY(pT2->mc == 3);
-
-		scoped_ptr<A> pT3(new A(4));
-		EATEST_VERIFY(pT3->mc == 4);
-
-		pT2.swap(pT3);
-		EATEST_VERIFY(pT2->mc == 4);
-		EATEST_VERIFY(pT3->mc == 3);
-
-		swap(pT2, pT3);
-		EATEST_VERIFY(pT2->mc == 3);
-		EATEST_VERIFY(pT3->mc == 4);
-		EATEST_VERIFY((pT2 < pT3) == (pT2.get() < pT3.get()));
-
-		scoped_ptr<A> pT4;
-		EATEST_VERIFY(pT4.get() == (A*)0);
-		if(pT4)
-			EATEST_VERIFY(pT4.get()); // Will fail
-		if(!(!pT4))
-			EATEST_VERIFY(pT4.get()); // Will fail
-
-		pT4.reset(new A(0));
-		if(!pT4)
-			EATEST_VERIFY(!pT4.get()); // Will fail
-
-		EATEST_VERIFY(A::mCount == 3);
-	}
-
-	{   // Test the detach function.
-		scoped_ptr<A> ptr(new A);
-		A* pA = ptr.detach();
-		delete pA;
-	}
-
-	{
-		scoped_ptr<void> ptr(new int);
-		(void)ptr;
-	}
-
-	EATEST_VERIFY(A::mCount == 0);
-
-	return nErrorCount;
-}
-
-
-
-static int Test_scoped_array()
-{
-	using namespace SmartPtrTest;
-	using namespace eastl;
-
-	int nErrorCount(0);
-
-	{
-		scoped_array<int> pT1(new int[5]);
-		pT1[0] = 5;
-		EATEST_VERIFY(pT1[0] == 5);
-		EATEST_VERIFY(pT1.get()[0] == 5);
-
-		scoped_array<A> pT2(new A[2]);
-		EATEST_VERIFY(A::mCount == 2);
-		EATEST_VERIFY(pT2[0].mc == 0);
-		EATEST_VERIFY(pT2.get()[0].mc == 0);
-		EATEST_VERIFY(get_pointer(pT2)[0].mc == 0);
-
-		pT2.reset(new A[4]);
-		EATEST_VERIFY(A::mCount == 4);
-		if(!pT2)
-			EATEST_VERIFY(!pT2.get()); // Will fail
-
-		pT2.reset(0);
-		EATEST_VERIFY(A::mCount == 0);
-		if(pT2)
-			EATEST_VERIFY(pT2.get()); // Will fail
-		if(!(!pT2))
-			EATEST_VERIFY(pT2.get()); // Will fail
-
-		scoped_array<A> pT3(new A[3]);
-		EATEST_VERIFY(A::mCount == 3);
-
-		pT2.swap(pT3);
-		EATEST_VERIFY(A::mCount == 3);
-
-		swap(pT2, pT3);
-		EATEST_VERIFY(A::mCount == 3);
-		EATEST_VERIFY((pT2 < pT3) == (pT2.get() < pT3.get()));
-
-		EATEST_VERIFY(A::mCount == 3);
-	}
-
-	{   // Test the detach function.
-		scoped_array<A> ptr(new A[6]);
-		A* pArray = ptr.detach();
-		delete[] pArray;
-	}
-
-	{
-		scoped_array<void> ptr(new int[6]);
-		(void)ptr;
-	}
-
-	EATEST_VERIFY(A::mCount == 0);
-
-	return nErrorCount;
-}
 
 
 static int Test_shared_ptr()
@@ -1716,162 +1577,6 @@ static int Test_shared_array()
 
 
 
-static int Test_linked_ptr()
-{
-	using namespace SmartPtrTest;
-	using namespace eastl;
-
-	int nErrorCount(0);
-
-	{
-		linked_ptr<int> pT1(new int(5));
-		EATEST_VERIFY(*pT1.get() == 5);
-		EATEST_VERIFY(pT1.get() == get_pointer(pT1));
-		EATEST_VERIFY(pT1.use_count() == 1);
-		EATEST_VERIFY(pT1.unique());
-
-		linked_ptr<int> pT2;
-		EATEST_VERIFY(pT1 != pT2);
-		EATEST_VERIFY(pT1.use_count() == 1);
-		EATEST_VERIFY(pT1.unique());
-
-		pT2 = pT1;
-		EATEST_VERIFY(pT1.use_count() == 2);
-		EATEST_VERIFY(pT2.use_count() == 2);
-		EATEST_VERIFY(!pT1.unique());
-		EATEST_VERIFY(!(pT1 < pT2)); // They should be equal
-		EATEST_VERIFY(pT1 == pT2);
-
-		*pT1 = 3;
-		EATEST_VERIFY(*pT1.get() == 3);
-		EATEST_VERIFY(*pT1 == 3);
-		EATEST_VERIFY(*pT2 == 3);
-
-		pT2.reset((int*)NULL);
-		EATEST_VERIFY(pT2.unique());
-		EATEST_VERIFY(pT2.use_count() == 1);
-		EATEST_VERIFY(pT1.unique());
-		EATEST_VERIFY(pT1.use_count() == 1);
-		EATEST_VERIFY(pT1 != pT2);
-	}
-
-	{
-		EATEST_VERIFY(A::mCount == 0);
-
-		linked_ptr<A> pT2(new A(0));
-		EATEST_VERIFY(A::mCount == 1);
-		EATEST_VERIFY(pT2->mc == 0);
-		EATEST_VERIFY(pT2.use_count() == 1);
-		EATEST_VERIFY(pT2.unique());
-
-		pT2.reset(new A(1));
-		EATEST_VERIFY(pT2->mc == 1);
-		EATEST_VERIFY(A::mCount == 1);
-		EATEST_VERIFY(pT2.use_count() == 1);
-		EATEST_VERIFY(pT2.unique());
-
-		linked_ptr<A> pT3(new A(2));
-		EATEST_VERIFY(A::mCount == 2);
-
-		linked_ptr<A> pT4;
-		EATEST_VERIFY(pT2.use_count() == 1);
-		EATEST_VERIFY(pT2.unique());
-		EATEST_VERIFY(A::mCount == 2);
-		if(pT4)
-			EATEST_VERIFY(pT4.get()); // Will fail
-		if(!(!pT4))
-			EATEST_VERIFY(pT4.get()); // Will fail
-
-		pT4 = pT2;
-		EATEST_VERIFY(pT2.use_count() == 2);
-		EATEST_VERIFY(pT4.use_count() == 2);
-		EATEST_VERIFY(!pT2.unique());
-		EATEST_VERIFY(!pT4.unique());
-		EATEST_VERIFY(A::mCount == 2);
-		EATEST_VERIFY(pT2 == pT4);
-		EATEST_VERIFY(pT2 != pT3);
-		EATEST_VERIFY(!(pT2 < pT4)); // They should be equal
-
-		linked_ptr<A> pT5(pT4);
-		EATEST_VERIFY(pT4 == pT5);
-		EATEST_VERIFY(pT2.use_count() == 3);
-		EATEST_VERIFY(pT4.use_count() == 3);
-		EATEST_VERIFY(pT5.use_count() == 3);
-		EATEST_VERIFY(!pT5.unique());
-
-		pT4 = linked_ptr<A>((A*)NULL);
-		EATEST_VERIFY(pT4.unique());
-		EATEST_VERIFY(pT4.use_count() == 1);
-		EATEST_VERIFY(pT2.use_count() == 2);
-
-		EATEST_VERIFY(A::mCount == 2);
-	}
-		
-	{  // Do some force_delete tests.
-		linked_ptr<A> pT2(new A(0));
-		linked_ptr<A> pT3(pT2);
-		pT2.force_delete();
-		pT3.force_delete();
-	}
-
-	EATEST_VERIFY(A::mCount == 0);
-
-
-	{   // Verify that subclasses are usable.
-		bool bAlloc = false;
-
-		eastl::linked_ptr<DerivedMockObject> pDMO(new DerivedMockObject(&bAlloc));
-		eastl::linked_ptr<MockObject> a1(pDMO);
-		eastl::linked_ptr<MockObject> a2;
-
-		a2 = pDMO;
-	}
-
-	{ // Test regression for a bug.
-		linked_ptr<A> pT2;
-		linked_ptr<A> pT3(pT2);     // In the bug linked_ptr::mpPrev and mpNext were not initialized via this ctor.
-		pT3.reset(new A);           // In the bug this would crash due to unintialized mpPrev/mpNext.
-
-		linked_ptr<B> pT4;
-		linked_ptr<A> pT5(pT4);
-		pT5.reset(new A);
-
-		linked_array<A> pT6;
-		linked_array<A> pT7(pT6);
-		pT7.reset(new A[1]);
-	}
-
-	return nErrorCount;
-}
-
-
-
-static int Test_linked_array()
-{
-	using namespace SmartPtrTest;
-	using namespace eastl;
-
-	int nErrorCount(0);
-
-	{
-		// Tests go here.
-	}
-
-	{  // Do some force_delete tests.
-		linked_array<A> pT2(new A[2]);
-		linked_array<A> pT3(pT2);
-		pT2.force_delete();
-		pT3.force_delete();
-	}
-
-	EATEST_VERIFY(A::mCount == 0);
-
-
-	return nErrorCount;
-}
-
-
-
 static int Test_intrusive_ptr()
 {
 	using namespace SmartPtrTest;
@@ -2230,14 +1935,10 @@ int TestSmartPtr()
 	int nErrorCount = 0;
 
 	nErrorCount += Test_unique_ptr();
-	nErrorCount += Test_scoped_ptr();
-	nErrorCount += Test_scoped_array();
 	nErrorCount += Test_shared_ptr();
 	nErrorCount += Test_shared_ptr_thread();
 	nErrorCount += Test_weak_ptr();
 	nErrorCount += Test_shared_array();
-	nErrorCount += Test_linked_ptr();
-	nErrorCount += Test_linked_array();
 	nErrorCount += Test_intrusive_ptr();
 	nErrorCount += Test_safe_ptr();
 	nErrorCount += Test_owner_before();

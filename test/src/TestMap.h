@@ -7,7 +7,7 @@
 #include <EASTL/vector.h>
 #include <EASTL/algorithm.h>
 #include <EASTL/type_traits.h>
-#include <EASTL/scoped_ptr.h>
+#include <EASTL/unique_ptr.h>
 #include <EASTL/random.h>
 #include <EASTL/tuple.h>
 
@@ -36,23 +36,23 @@ int TestMapConstruction()
 
 	{
 		// We use new because fixed-size versions these objects might be too big for declaration on a stack.
-		eastl::scoped_ptr<T1> pt1A(new T1);
-		eastl::scoped_ptr<T2> pt2A(new T2);
+		eastl::unique_ptr<T1> pt1A(new T1);
+		eastl::unique_ptr<T2> pt2A(new T2);
 		T1& t1A = *pt1A;
 		T2& t2A = *pt2A;
 		nErrorCount += CompareContainers(t1A, t2A, "Map ctor", eastl::use_first<typename T1::value_type>(), eastl::use_first<typename T2::value_type>());
 		EATEST_VERIFY(t1A.validate());
 
 
-		eastl::scoped_ptr<T1> pt1B(new T1);
-		eastl::scoped_ptr<T2> pt2B(new T2);
+		eastl::unique_ptr<T1> pt1B(new T1);
+		eastl::unique_ptr<T2> pt2B(new T2);
 		T1& t1B = *pt1B;
 		T2& t2B = *pt2B;
 		nErrorCount += CompareContainers(t1B, t2B, "Map ctor", eastl::use_first<typename T1::value_type>(), eastl::use_first<typename T2::value_type>());
 
 
-		eastl::scoped_ptr<T1> pt1C(new T1);
-		eastl::scoped_ptr<T2> pt2C(new T2);
+		eastl::unique_ptr<T1> pt1C(new T1);
+		eastl::unique_ptr<T2> pt2C(new T2);
 		T1& t1C = *pt1C;
 		T2& t2C = *pt2C;
 		for(int i = 0; i < 1000; i++)
@@ -64,23 +64,23 @@ int TestMapConstruction()
 		}
 
 
-		eastl::scoped_ptr<T1> pt1D(new T1);
-		eastl::scoped_ptr<T2> pt2D(new T2);
+		eastl::unique_ptr<T1> pt1D(new T1);
+		eastl::unique_ptr<T2> pt2D(new T2);
 		T1& t1D = *pt1D;
 		T2& t2D = *pt2D;
 		nErrorCount += CompareContainers(t1D, t2D, "Map ctor", eastl::use_first<typename T1::value_type>(), eastl::use_first<typename T2::value_type>());
 
 
-		eastl::scoped_ptr<T1> pt1E(new T1(t1C));
-		eastl::scoped_ptr<T2> pt2E(new T2(t2C));
+		eastl::unique_ptr<T1> pt1E(new T1(t1C));
+		eastl::unique_ptr<T2> pt2E(new T2(t2C));
 		T1& t1E = *pt1E;
 		T2& t2E = *pt2E;
 		EATEST_VERIFY(t1E.validate());
 		nErrorCount += CompareContainers(t1E, t2E, "Map ctor", eastl::use_first<typename T1::value_type>(), eastl::use_first<typename T2::value_type>());
 
 
-		eastl::scoped_ptr<T1> pt1F(new T1(t1C.begin(), t1C.end()));
-		eastl::scoped_ptr<T2> pt2F(new T2(t2C.begin(), t2C.end()));
+		eastl::unique_ptr<T1> pt1F(new T1(t1C.begin(), t1C.end()));
+		eastl::unique_ptr<T2> pt2F(new T2(t2C.begin(), t2C.end()));
 		T1& t1F = *pt1F;
 		T2& t2F = *pt2F;
 		EATEST_VERIFY(t1F.validate());
@@ -96,8 +96,8 @@ int TestMapConstruction()
 
 		// operator=(map&&)
 		// We test just the EASTL container here.
-		eastl::scoped_ptr<T1> pT1P(new T1);
-		eastl::scoped_ptr<T1> pT1Q(new T1);
+		eastl::unique_ptr<T1> pT1P(new T1);
+		eastl::unique_ptr<T1> pT1Q(new T1);
 		T1& t1P = *pT1P;
 		T1& t1Q = *pT1Q;
 
@@ -201,8 +201,8 @@ int TestMapMutation()
 	TestObject::Reset();
 
 	{
-		eastl::scoped_ptr<T1> pt1A(new T1); // We use a pointers instead of concrete object because it's size may be huge.
-		eastl::scoped_ptr<T2> pt2A(new T2);
+		eastl::unique_ptr<T1> pt1A(new T1); // We use a pointers instead of concrete object because it's size may be huge.
+		eastl::unique_ptr<T2> pt2A(new T2);
 		T1&                   t1A = *pt1A;
 		T2&                   t2A = *pt2A;
 		int                   i, iEnd, p;
@@ -330,8 +330,8 @@ int TestMapMutation()
 	{  // Other insert and erase operations
 
 		#ifndef EA_COMPILER_NO_STANDARD_CPP_LIBRARY
-			eastl::scoped_ptr<T1> pt1A(new T1); // We use a pointers instead of concrete object because it's size may be huge.
-			eastl::scoped_ptr<T2> pt2A(new T2);
+			eastl::unique_ptr<T1> pt1A(new T1); // We use a pointers instead of concrete object because it's size may be huge.
+			eastl::unique_ptr<T2> pt2A(new T2);
 			T1& t1A = *pt1A;
 			T2& t2A = *pt2A;
 			int i;
@@ -546,7 +546,7 @@ int TestMapSearch()
 	TestObject::Reset();
 
 	{  // Test find, lower_bound, upper_bound, etc..
-		eastl::scoped_ptr<T1> pt1A(new T1); // We use a pointers instead of concrete object because it's size may be huge.
+		eastl::unique_ptr<T1> pt1A(new T1); // We use a pointers instead of concrete object because it's size may be huge.
 		T1& t1A = *pt1A;
 		int i, iEnd;
 		typename T1::iterator it;
