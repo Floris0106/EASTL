@@ -7,7 +7,6 @@
 
 
 #include <EABase/eabase.h>
-#include <EABase/nullptr.h>
 
 namespace eastl
 {
@@ -249,7 +248,7 @@ namespace eastl
 
 	template <typename T> struct is_hat_type_helper : public false_type {};
 
-	#if (EABASE_VERSION_N > 20607 && defined(EA_COMPILER_WINRTCX_ENABLED)) || defined(__cplusplus_winrt)
+	#if defined(EA_COMPILER_WINRTCX_ENABLED) || defined(__cplusplus_winrt)
 		template <typename T> struct is_hat_type_helper<T^> : public true_type{};
 	#endif 
 

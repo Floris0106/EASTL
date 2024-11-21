@@ -590,7 +590,7 @@ namespace eastl
 		{
 			struct type { unsigned char mCharData[N]; } EA_ALIGN(Align);
 		};
-	#elif (EABASE_VERSION_N >= 20040) && !defined(EA_COMPILER_NO_ALIGNAS) // If C++11 alignas is supported...
+	#elif !defined(EA_COMPILER_NO_ALIGNAS) // If C++11 alignas is supported...
 		template<size_t N, size_t Align = EASTL_ALIGN_OF(double)>
 		struct aligned_storage
 		{

@@ -713,56 +713,6 @@
 	#endif
 #endif
 
-// nullptr, the built-in C++11 type.
-// This EA_HAVE is deprecated, as EA_COMPILER_NO_NULLPTR is more appropriate, given that nullptr is a compiler-level feature and not a library feature.
-#if !defined(EA_HAVE_nullptr_IMPL) && !defined(EA_NO_HAVE_nullptr_IMPL)
-	#if defined(EA_COMPILER_NO_NULLPTR)
-		#define EA_NO_HAVE_nullptr_IMPL 1
-	#else
-		#define EA_HAVE_nullptr_IMPL 1
-	#endif
-#endif
-
-// <cstddef> std::nullptr_t
-// Note that <EABase/nullptr.h> implements a portable nullptr implementation, but this 
-// EA_HAVE specifically refers to std::nullptr_t from the standard libraries.
-#if !defined(EA_HAVE_nullptr_t_IMPL) && !defined(EA_NO_HAVE_nullptr_t_IMPL)
-	#if defined(EA_COMPILER_CPP11_ENABLED)
-		// VS2010+ with its default Dinkumware standard library.
-		#if defined(_MSC_VER) && (_MSC_VER >= 1600) && defined(EA_HAVE_DINKUMWARE_CPP_LIBRARY)
-			#define EA_HAVE_nullptr_t_IMPL 1
-
-		#elif defined(EA_HAVE_LIBCPP_LIBRARY) // clang/llvm libc++
-			#define EA_HAVE_nullptr_t_IMPL 1
-
-		#elif defined(EA_HAVE_LIBSTDCPP_LIBRARY) // GNU libstdc++
-			// Unfortunately __GLIBCXX__ date values don't go strictly in version ordering.
-			#if (__GLIBCXX__ >= 20110325) && (__GLIBCXX__ != 20120702) && (__GLIBCXX__ != 20110428)
-				#define EA_HAVE_nullptr_t_IMPL 1
-			#else
-				#define EA_NO_HAVE_nullptr_t_IMPL 1
-			#endif
-			
-		// We simply assume that the standard library (e.g. Dinkumware) provides std::nullptr_t.
-		#elif defined(__clang__)
-			#define EA_HAVE_nullptr_t_IMPL 1
-
-		// With GCC compiler >= 4.6, std::nullptr_t is always defined in <cstddef>, in practice.
-		#elif defined(EA_COMPILER_GNUC) && (EA_COMPILER_VERSION >= 4006)
-			#define EA_HAVE_nullptr_t_IMPL 1
-
-		// The EDG compiler provides nullptr, but uses an older standard library that doesn't support std::nullptr_t.
-		#elif defined(__EDG_VERSION__) && (__EDG_VERSION__ >= 403) 
-			#define EA_HAVE_nullptr_t_IMPL 1
-			
-		#else
-			#define EA_NO_HAVE_nullptr_t_IMPL 1
-		#endif
-	#else
-		#define EA_NO_HAVE_nullptr_t_IMPL 1
-	#endif
-#endif
-
 // <exception> std::terminate
 #if !defined(EA_HAVE_std_terminate_IMPL) && !defined(EA_NO_HAVE_std_terminate_IMPL)
 	#if !defined(EA_PLATFORM_IPHONE) && !defined(EA_PLATFORM_ANDROID)

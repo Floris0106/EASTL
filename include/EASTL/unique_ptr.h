@@ -6,7 +6,6 @@
 #pragma once
 
 
-#include <EABase/nullptr.h>
 #include <EASTL/internal/config.h>
 #include <EASTL/internal/smart_ptr.h>   // Defines smart_ptr_deleter
 #include <EASTL/internal/move_help.h>   // Defines EASTL_MOVE

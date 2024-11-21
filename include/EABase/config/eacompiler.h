@@ -55,7 +55,6 @@
  *     EA_COMPILER_NO_CONSTEXPR
  *     EA_COMPILER_NO_OVERRIDE
  *     EA_COMPILER_NO_INHERITANCE_FINAL
- *     EA_COMPILER_NO_NULLPTR
  *     EA_COMPILER_NO_AUTO
  *     EA_COMPILER_NO_DECLTYPE
  *     EA_COMPILER_NO_DEFAULTED_FUNCTIONS
@@ -935,26 +934,6 @@
 		// supported.
 	#else
 		#define EA_COMPILER_NO_AUTO 1
-	#endif
-#endif
-
-
-// EA_COMPILER_NO_NULLPTR
-//
-// Refers to C++11 nullptr (which is a built in type). std::nullptr_t is defined in C++11 <cstddef>.
-// Note that <EABase/nullptr.h> implements a portable nullptr implementation.
-//
-#if !defined(EA_COMPILER_NO_NULLPTR)
-	#if (defined(_MSC_VER) && (_MSC_VER >= 1600)) && defined(EA_COMPILER_CPP11_ENABLED)
-		// supported
-	#elif defined(EA_COMPILER_GNUC) && (EA_COMPILER_VERSION >= 4006) && defined(EA_COMPILER_CPP11_ENABLED)
-		// supported
-	#elif  defined(__clang__) && defined(EA_COMPILER_CPP11_ENABLED)
-		// supported
-	#elif defined(__EDG_VERSION__) && (__EDG_VERSION__ >= 403) && defined(EA_COMPILER_CPP11_ENABLED)
-		// supported
-	#else
-		#define EA_COMPILER_NO_NULLPTR 1
 	#endif
 #endif
 

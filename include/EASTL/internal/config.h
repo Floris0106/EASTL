@@ -1361,7 +1361,7 @@ namespace eastl
 // If enabled then C++11-like functionality with variable templates is enabled.
 ///////////////////////////////////////////////////////////////////////////////
 #if !defined(EASTL_VARIABLE_TEMPLATES_ENABLED)
-	#if((EABASE_VERSION_N < 20605) || defined(EA_COMPILER_NO_VARIABLE_TEMPLATES))
+	#if defined(EA_COMPILER_NO_VARIABLE_TEMPLATES)
 		#define EASTL_VARIABLE_TEMPLATES_ENABLED 0
 	#else
 		#define EASTL_VARIABLE_TEMPLATES_ENABLED 1
@@ -1375,7 +1375,7 @@ namespace eastl
 // If enabled then C++17-like functionality with inline variable is enabled.
 ///////////////////////////////////////////////////////////////////////////////
 #if !defined(EASTL_INLINE_VARIABLE_ENABLED)
-	#if((EABASE_VERSION_N < 20707) || defined(EA_COMPILER_NO_INLINE_VARIABLES))
+	#if defined(EA_COMPILER_NO_INLINE_VARIABLES)
 		#define EASTL_INLINE_VARIABLE_ENABLED 0
 	#else
 		#define EASTL_INLINE_VARIABLE_ENABLED 1

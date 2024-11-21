@@ -17,9 +17,6 @@
 // Identify the platform and declare the EA_xxxx defines
 #include <EABase/config/eaplatform.h>
 
-// Always include version.h for backwards compatibility.
-#include <EABase/version.h>
-
 // Define common SI unit macros
 #include <EABase/eaunits.h>
 

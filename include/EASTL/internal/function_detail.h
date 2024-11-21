@@ -5,7 +5,6 @@
 #pragma once
 
 #include <EABase/eabase.h>
-#include <EABase/nullptr.h>
 #include <EABase/config/eacompilertraits.h>
 
 #include <EASTL/internal/config.h>

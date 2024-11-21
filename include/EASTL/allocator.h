@@ -7,7 +7,6 @@
 
 
 #include <EASTL/internal/config.h>
-#include <EABase/nullptr.h>
 #include <stddef.h>
 
 
