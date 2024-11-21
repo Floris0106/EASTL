@@ -2,8 +2,7 @@
 // Copyright (c) Electronic Arts Inc. All rights reserved.
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef EASTL_FUNCTIONAL_H
-#define EASTL_FUNCTIONAL_H
+#pragma once
 
 
 #include <EABase/eabase.h>
@@ -12,11 +11,6 @@
 #include <EASTL/type_traits.h>
 #include <EASTL/internal/functional_base.h>
 #include <EASTL/internal/mem_fn.h>
-
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 // 4512/4626 - 'class' : assignment operator could not be generated.  // This disabling would best be put elsewhere.
 EA_DISABLE_VC_WARNING(4512 4626);
@@ -1359,12 +1353,3 @@ namespace eastl
 #include <EASTL/internal/function.h>
 
 EA_RESTORE_VC_WARNING();
-
-#endif // Header include guard
-
-
-
-
-
-
-

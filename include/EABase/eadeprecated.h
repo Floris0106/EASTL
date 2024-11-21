@@ -2,15 +2,9 @@
 // Copyright (c) Electronic Arts Inc. All rights reserved.
 /////////////////////////////////////////////////////////////////////////////////
 
-#ifndef EABASE_EADEPRECATED_H
-#define EABASE_EADEPRECATED_H
+#pragma once
 
 #include <EABase/eabase.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
-
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -247,6 +241,3 @@
 	#define EA_REMOVE_AT_2025_APRIL
 	#define EA_REMOVE_AT_2025_APRIL_MSG(msg)
 #endif
-
-
-#endif /* EABASE_EADEPRECATED_H */

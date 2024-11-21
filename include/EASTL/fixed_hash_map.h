@@ -8,18 +8,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_FIXED_HASH_MAP_H
-#define EASTL_FIXED_HASH_MAP_H
+#pragma once
 
 
 #include <EASTL/hash_map.h>
 #include <EASTL/internal/fixed_pool.h>
 
 EA_DISABLE_VC_WARNING(4127) // Conditional expression is constant
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 namespace eastl
@@ -814,17 +809,3 @@ namespace eastl
 } // namespace eastl
 
 EA_RESTORE_VC_WARNING()
-
-#endif // Header include guard
-
-
-
-
-
-
-
-
-
-
-
-

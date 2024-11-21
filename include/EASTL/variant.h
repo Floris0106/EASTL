@@ -53,8 +53,7 @@
 // 	* https://thenewcpp.wordpress.com/2012/02/15/variadic-templates-part-3-or-how-i-wrote-a-variant-class/
 ///////////////////////////////////////////////////////////////////////////
 
-#ifndef EASTL_VARIANT_H
-#define EASTL_VARIANT_H
+#pragma once
 
 #include <EASTL/internal/config.h>
 #include <EASTL/internal/in_place_t.h>
@@ -70,11 +69,6 @@
 #if EASTL_EXCEPTIONS_ENABLED
 	#include <stdexcept>
 	#include <exception>
-#endif
-
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
 #endif
 
 #ifndef EA_COMPILER_CPP14_ENABLED
@@ -1572,5 +1566,3 @@ namespace eastl
 } // namespace eastl
 
 EA_RESTORE_VC_WARNING()
-
-#endif // EASTL_VARIANT_H

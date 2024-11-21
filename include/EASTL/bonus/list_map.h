@@ -3,8 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_LIST_MAP_H
-#define EASTL_LIST_MAP_H
+#pragma once
 
 
 #include <EASTL/map.h>
@@ -958,9 +957,3 @@ namespace eastl
 } // namespace eastl
 
 EA_RESTORE_VC_WARNING();
-
-#endif // Header include guard
-
-
-
-

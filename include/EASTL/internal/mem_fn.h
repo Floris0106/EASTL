@@ -3,12 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_MEM_FN_H
-#define EASTL_INTERNAL_MEM_FN_H
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
 #pragma once
-#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // The code in this file is a modification of the libcxx implementation.  We copy
@@ -303,5 +298,3 @@ namespace eastl
 } // namespace eastl
 
 EASTL_INTERNAL_RESTORE_DEPRECATED()
-
-#endif // EASTL_INTERNAL_MEM_FN_H

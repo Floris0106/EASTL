@@ -9,18 +9,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_QUEUE_H
-#define EASTL_QUEUE_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
 #include <EASTL/deque.h>
 #include <EASTL/initializer_list.h>
 #include <stddef.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 
@@ -387,19 +382,3 @@ namespace eastl
 
 
 } // namespace eastl
-
-
-#endif // Header include guard
-
-
-
-
-
-
-
-
-
-
-
-
-

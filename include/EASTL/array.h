@@ -12,8 +12,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_ARRAY_H
-#define EASTL_ARRAY_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
@@ -31,10 +30,6 @@
 
 // 4512/4626 - 'class' : assignment operator could not be generated.  // This disabling would best be put elsewhere.
 EA_DISABLE_VC_WARNING(4512 4626);
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 
@@ -677,15 +672,3 @@ struct tuple_element<I, eastl::array<T, N>> : public eastl::tuple_element<I, eas
 
 
 EA_RESTORE_VC_WARNING();
-
-#endif // Header include guard
-
-
-
-
-
-
-
-
-
-

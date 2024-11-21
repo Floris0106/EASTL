@@ -5,8 +5,7 @@
  *---------------------------------------------------------------------------*/
 
 
-#ifndef INCLUDED_eastdarg_H
-#define INCLUDED_eastdarg_H
+#pragma once
 
 
 #include <EABase/eabase.h>
@@ -89,11 +88,3 @@
 		#define va_list_reference va_list
 	#endif
 #endif
-
-
-
-
-#endif /* Header include guard */
-
-
-

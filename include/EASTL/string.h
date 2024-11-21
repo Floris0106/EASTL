@@ -87,8 +87,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_STRING_H
-#define EASTL_STRING_H
+#pragma once
 
 #include <EASTL/internal/config.h>
 #include <EASTL/allocator.h>
@@ -123,11 +122,6 @@ EA_RESTORE_ALL_VC_WARNINGS()
 // 4267 - 'argument' : conversion from 'size_t' to 'const uint32_t', possible loss of data. This is a bogus warning resulting from a bug in VC++.
 // 4702 - unreachable code
 EA_DISABLE_VC_WARNING(4530 4480 4571 4267 4702);
-
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 #include <EASTL/internal/char_traits.h>
@@ -4061,6 +4055,3 @@ namespace eastl
 
 
 EA_RESTORE_VC_WARNING();
-
-
-#endif // Header include guard

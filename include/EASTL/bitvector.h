@@ -13,8 +13,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_BITVECTOR_H
-#define EASTL_BITVECTOR_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
@@ -26,10 +25,6 @@
 #endif
 
 EA_DISABLE_VC_WARNING(4480); // nonstandard extension used: specifying underlying type for enum
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 
@@ -1468,5 +1463,3 @@ namespace eastl
 
 
 EA_RESTORE_VC_WARNING();
-
-#endif // Header include guard

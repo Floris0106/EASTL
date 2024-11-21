@@ -3,8 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_CONFIG_H
-#define EASTL_INTERNAL_CONFIG_H
+#pragma once
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -62,10 +61,6 @@
 	#include <EABase/eadeprecated.h>
 #endif
 #include <EABase/eahave.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1825,5 +1820,3 @@ typedef EASTL_SSIZE_T eastl_ssize_t; // Signed version of eastl_size_t. Concept 
 	EA_RESTORE_CLANG_WARNING();				\
 	EA_RESTORE_VC_WARNING();				\
 	EA_RESTORE_GCC_WARNING();
-
-#endif // Header include guard

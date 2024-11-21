@@ -3,16 +3,11 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_TYPE_FUNDAMENTAL_H
-#define EASTL_INTERNAL_TYPE_FUNDAMENTAL_H
+#pragma once
 
 
 #include <EABase/eabase.h>
 #include <EABase/nullptr.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 namespace eastl
 {
@@ -322,27 +317,3 @@ namespace eastl
 
 
 } // namespace eastl
-
-
-#endif // Header include guard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

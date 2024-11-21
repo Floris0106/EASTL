@@ -3,8 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_MAP_H
-#define EASTL_MAP_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
@@ -13,10 +12,6 @@
 #include <EASTL/utility.h>
 #if EASTL_EXCEPTIONS_ENABLED
 #include <stdexcept>
-#endif
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
 #endif
 
 
@@ -835,10 +830,3 @@ namespace eastl
 #endif
 
 } // namespace eastl
-
-
-#endif // Header include guard
-
-
-
-

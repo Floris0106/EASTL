@@ -2,14 +2,9 @@
 // Copyright (c) Electronic Arts Inc. All rights reserved.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef EASTL_BIT_H
-#define EASTL_BIT_H
+#pragma once
 
 #include <EASTL/internal/config.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 #include <EASTL/internal/memory_base.h>
 #include <EASTL/type_traits.h>
@@ -169,5 +164,3 @@ namespace eastl
 	#endif
 
 } // namespace eastl
-
-#endif // EASTL_BIT_H

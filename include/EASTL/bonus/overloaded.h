@@ -2,17 +2,10 @@
 // Copyright (c) Electronic Arts Inc. All rights reserved.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef EASTL_OVERLOADED_H
-#define EASTL_OVERLOADED_H
+#pragma once
 
 #include <EASTL/internal/move_help.h>
 #include <EASTL/type_traits.h>
-
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed
-			 // improvements in apps as a result.
-#endif
 
 // 4512/4626 - 'class' : assignment operator could not be generated.  // This disabling would best be put elsewhere.
 EA_DISABLE_VC_WARNING(4512 4626);
@@ -82,5 +75,3 @@ namespace eastl
 } // namespace eastl
 
 EA_RESTORE_VC_WARNING();
-
-#endif // EASTL_OVERLOADED_H

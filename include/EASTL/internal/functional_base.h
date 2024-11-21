@@ -3,14 +3,9 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_FUNCTIONAL_BASE_H
-#define EASTL_INTERNAL_FUNCTIONAL_BASE_H
+#pragma once
 
 #include <EASTL/internal/config.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 #include <EASTL/internal/memory_base.h>
 #include <EASTL/internal/move_help.h>
@@ -423,5 +418,3 @@ namespace eastl
 	EASTL_INTERNAL_RESTORE_DEPRECATED()
 
 } // namespace eastl
-
-#endif // EASTL_INTERNAL_FUNCTIONAL_BASE_H

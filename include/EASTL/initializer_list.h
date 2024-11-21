@@ -7,16 +7,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INITIALIZER_LIST_H
-#define EASTL_INITIALIZER_LIST_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
 #include <EABase/eahave.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 #if defined(EA_HAVE_CPP11_INITIALIZER_LIST) // If the compiler can generate calls to std::initializer_list...
@@ -84,21 +79,3 @@
 	}
 
 #endif
-
-
-#endif // Header include guard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

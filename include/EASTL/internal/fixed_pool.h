@@ -15,14 +15,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_FIXED_POOL_H
-#define EASTL_INTERNAL_FIXED_POOL_H
+#pragma once
 
 
 #include <EABase/eabase.h>
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 #include <EASTL/internal/config.h>
 #include <EASTL/functional.h>
@@ -1626,6 +1622,3 @@ namespace eastl
 
 
 EA_RESTORE_VC_WARNING();
-
-
-#endif // Header include guard

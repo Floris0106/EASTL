@@ -76,8 +76,7 @@
 */
 
 
-#ifndef INCLUDED_eaplatform_H
-#define INCLUDED_eaplatform_H
+#pragma once
 
 
 // Cygwin
@@ -728,15 +727,3 @@
 		#define EA_CACHE_LINE_SIZE 64    // This is the minimum possible value
 	#endif
 #endif
-
-
-#endif // INCLUDED_eaplatform_H
-
-
-
-
-
-
-
-
-

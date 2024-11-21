@@ -38,8 +38,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_SORT_H
-#define EASTL_SORT_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
@@ -51,11 +50,6 @@
 #include <EASTL/heap.h>
 #include <EASTL/allocator.h>
 #include <EASTL/memory.h>
-
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 // EASTL_PLATFORM_PREFERRED_ALIGNMENT
@@ -2040,9 +2034,3 @@ namespace eastl
 	*/
 
 } // namespace eastl
-
-
-#endif // Header include guard
-
-
-

@@ -8,16 +8,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_NUMERIC_H
-#define EASTL_NUMERIC_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
 #include <EASTL/iterator.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 
@@ -426,8 +421,3 @@ namespace eastl
 	constexpr long double lerp(long double a, long double b, long double t) EA_NOEXCEPT { return shared_lerp(a, b, t); }
 	#endif
 }
-
-
-
-#endif // Header include guard
-

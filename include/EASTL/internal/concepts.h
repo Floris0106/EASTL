@@ -3,14 +3,10 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_CONCEPTS_H
-#define EASTL_INTERNAL_CONCEPTS_H
+#pragma once
 
 
 #include <EABase/eabase.h>
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-#pragma once
-#endif
 
 #include <EASTL/internal/type_detected.h>
 
@@ -44,5 +40,3 @@ namespace eastl
 		} // namespace concepts
 	} // namespace internal
 } // namespace eastl
-
-#endif

@@ -12,12 +12,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_CHRONO_H
-#define EASTL_CHRONO_H
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once 
-#endif
+#pragma once
 
 #include <EASTL/internal/config.h>
 #include <EASTL/type_traits.h>
@@ -770,6 +765,3 @@ namespace chrono
 	using namespace eastl::literals::chrono_literals;
 } // namespace chrono
 #endif
-
-
-#endif 

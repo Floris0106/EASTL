@@ -2,8 +2,7 @@
 // Copyright (c) Electronic Arts Inc. All rights reserved.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef EASTL_INTEGER_SEQUENCE_H
-#define EASTL_INTEGER_SEQUENCE_H
+#pragma once
 
 #include <EABase/config/eacompiler.h>
 #include <EASTL/internal/config.h>
@@ -114,5 +113,3 @@ EASTL_CPP17_INLINE_VARIABLE EA_CONSTEXPR size_t index_sequence_size_v = index_se
 #endif  // EASTL_VARIADIC_TEMPLATES_ENABLED
 
 }  // namespace eastl
-
-#endif  // EASTL_INTEGER_SEQUENCE_H

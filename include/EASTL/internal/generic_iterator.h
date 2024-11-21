@@ -10,14 +10,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_GENERIC_ITERATOR_H
-#define EASTL_INTERNAL_GENERIC_ITERATOR_H
+#pragma once
 
 
 #include <EABase/eabase.h>
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 #include <EASTL/internal/config.h>
 #include <EASTL/iterator.h>
@@ -216,6 +212,3 @@ namespace eastl
 
 
 EA_RESTORE_VC_WARNING();
-
-
-#endif // Header include guard

@@ -3,8 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_COMPARE_H
-#define EASTL_COMPARE_H
+#pragma once
 
 
 #include <EABase/eabase.h>
@@ -40,6 +39,3 @@ namespace eastl
 #endif
 
 } // namespace eastl
-
-
-#endif // Header include guard

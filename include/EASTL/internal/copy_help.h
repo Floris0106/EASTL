@@ -3,14 +3,9 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_INTERNAL_COPY_HELP_H
-#define EASTL_INTERNAL_COPY_HELP_H
+#pragma once
 
 #include <EASTL/internal/config.h>
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 #include <EASTL/type_traits.h>
 #include <EASTL/iterator.h>
@@ -217,5 +212,3 @@ namespace eastl
 		return eastl::move_and_copy_chooser<false>(first, last, result);
 	}
 } // namespace eastl
-
-#endif // EASTL_INTERNAL_COPY_HELP_H

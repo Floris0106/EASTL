@@ -11,14 +11,10 @@
 //	MSVC (no actual documentation, but searchable here):
 //		https://github.com/microsoft/STL/blob/main/stl/inc/type_traits
 
-#ifndef EASTL_INTERNAL_TYPE_POD_H
-#define EASTL_INTERNAL_TYPE_POD_H
+#pragma once
 
 
 #include <EABase/eabase.h>
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once
-#endif
 
 #include <limits.h>
 #include <EASTL/type_traits.h>
@@ -2027,6 +2023,3 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 
 
 } // namespace eastl
-
-
-#endif // Header include guard

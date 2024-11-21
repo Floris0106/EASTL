@@ -38,8 +38,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_SHARED_PTR_H
-#define EASTL_SHARED_PTR_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
@@ -65,10 +64,6 @@ EA_RESTORE_ALL_VC_WARNINGS()
 // 4571 - catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught.
 // 4512/4626 - 'class' : assignment operator could not be generated.  // This disabling would best be put elsewhere.
 EA_DISABLE_VC_WARNING(4530 4571 4512 4626);
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
 
 
 
@@ -1741,6 +1736,3 @@ EA_RESTORE_VC_WARNING();
 
 // We have to either #include enable_shared.h here or we need to move the enable_shared source code to here.
 #include <EASTL/internal/enable_shared.h>
-
-
-#endif // Header include guard

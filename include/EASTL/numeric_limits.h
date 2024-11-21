@@ -29,8 +29,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_NUMERIC_LIMITS_H
-#define EASTL_NUMERIC_LIMITS_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
@@ -39,10 +38,6 @@
 #include <float.h>
 #if defined(_CPPLIB_VER)            // Dinkumware.
 	#include <ymath.h>
-#endif
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
 #endif
 
 
@@ -1559,29 +1554,3 @@ namespace eastl
 
 
 EA_RESTORE_VC_WARNING()
-
-
-#endif // Header include guard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

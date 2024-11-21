@@ -14,16 +14,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_CALL_TRAITS_H
-#define EASTL_CALL_TRAITS_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
-#include <EASTL/type_traits.h>     
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
-#endif
+#include <EASTL/type_traits.h>
 
 
 
@@ -98,20 +93,3 @@ namespace eastl
 
 
 } // namespace eastl
-
-
-#endif // Header include guard
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -67,8 +67,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef EASTL_DEQUE_H
-#define EASTL_DEQUE_H
+#pragma once
 
 
 #include <EASTL/internal/config.h>
@@ -102,11 +101,6 @@ EA_DISABLE_VC_WARNING(4267 4345 4480 4530 4571);
 	// 4703 - potentially uninitialized local pointer variable used. VC++ is mistakenly analyzing the possibility of uninitialized variables, though it's not easy for it to do so.
 	// 4701 - potentially uninitialized local variable used.
 	EA_DISABLE_VC_WARNING(4703 4701)
-#endif
-
-
-#if defined(EA_PRAGMA_ONCE_SUPPORTED)
-	#pragma once // Some compilers (e.g. VC++) benefit significantly from using this. We've measured 3-4% build speed improvements in apps as a result.
 #endif
 
 
@@ -2906,6 +2900,3 @@ EA_RESTORE_VC_WARNING();
 #if EASTL_EXCEPTIONS_ENABLED
 	EA_RESTORE_VC_WARNING();
 #endif
-
-
-#endif // Header include guard
