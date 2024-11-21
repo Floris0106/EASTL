@@ -109,9 +109,9 @@ namespace eastl
 			value_compare(Compare c) : compare(c) {}
 
 		public:
-			EASTL_REMOVE_AT_2024_APRIL typedef bool       result_type;
-			EASTL_REMOVE_AT_2024_APRIL typedef value_type first_argument_type;
-			EASTL_REMOVE_AT_2024_APRIL typedef value_type second_argument_type;
+			[[deprecated]] typedef bool       result_type;
+			[[deprecated]] typedef value_type first_argument_type;
+			[[deprecated]] typedef value_type second_argument_type;
 
 			bool operator()(const value_type& x, const value_type& y) const 
 				{ return compare(x.first, y.first); }
@@ -251,9 +251,9 @@ namespace eastl
 			value_compare(Compare c) : compare(c) {}
 
 		public:
-			EASTL_REMOVE_AT_2024_APRIL typedef bool       result_type;
-			EASTL_REMOVE_AT_2024_APRIL typedef value_type first_argument_type;
-			EASTL_REMOVE_AT_2024_APRIL typedef value_type second_argument_type;
+			[[deprecated]] typedef bool       result_type;
+			[[deprecated]] typedef value_type first_argument_type;
+			[[deprecated]] typedef value_type second_argument_type;
 
 			bool operator()(const value_type& x, const value_type& y) const 
 				{ return compare(x.first, y.first); }

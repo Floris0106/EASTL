@@ -123,7 +123,7 @@ namespace eastl
 		: public maybe_derive_from_unary_function<T>,
 		  public maybe_derive_from_binary_function<T>
 	{
-		EASTL_REMOVE_AT_2024_APRIL typedef typename T::result_type result_type;
+		[[deprecated]] typedef typename T::result_type result_type;
 	};
 
 	template <class T>
@@ -139,9 +139,9 @@ namespace eastl
 	struct weak_result_type : public weak_result_type_imp<T> { };
 
 	// 0 argument case 
-	template <class R> struct weak_result_type<R()> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R> struct weak_result_type<R(&)()> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R> struct weak_result_type<R (*)()> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
+	template <class R> struct weak_result_type<R()> { [[deprecated]] typedef R result_type; };
+	template <class R> struct weak_result_type<R(&)()> { [[deprecated]] typedef R result_type; };
+	template <class R> struct weak_result_type<R (*)()> { [[deprecated]] typedef R result_type; };
 
 	// 1 argument case 
 	template <class R, class A1> struct weak_result_type<R(A1)> : public unary_function<A1, R> { }; 
@@ -163,13 +163,13 @@ namespace eastl
 
 	// 3 or more arguments
 #if EASTL_VARIADIC_TEMPLATES_ENABLED 
-	template <class R, class A1, class A2, class A3, class... A4> struct weak_result_type<R(A1, A2, A3, A4...)> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R, class A1, class A2, class A3, class... A4> struct weak_result_type<R(&)(A1, A2, A3, A4...)> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R, class A1, class A2, class A3, class... A4> struct weak_result_type<R (*)(A1, A2, A3, A4...)> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...)> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...) const> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...) volatile> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
-	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...) const volatile> { EASTL_REMOVE_AT_2024_APRIL typedef R result_type; };
+	template <class R, class A1, class A2, class A3, class... A4> struct weak_result_type<R(A1, A2, A3, A4...)> { [[deprecated]] typedef R result_type; };
+	template <class R, class A1, class A2, class A3, class... A4> struct weak_result_type<R(&)(A1, A2, A3, A4...)> { [[deprecated]] typedef R result_type; };
+	template <class R, class A1, class A2, class A3, class... A4> struct weak_result_type<R (*)(A1, A2, A3, A4...)> { [[deprecated]] typedef R result_type; };
+	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...)> { [[deprecated]] typedef R result_type; };
+	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...) const> { [[deprecated]] typedef R result_type; };
+	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...) volatile> { [[deprecated]] typedef R result_type; };
+	template <class R, class C, class A1, class A2, class... A3> struct weak_result_type<R (C::*)(A1, A2, A3...) const volatile> { [[deprecated]] typedef R result_type; };
 #endif
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

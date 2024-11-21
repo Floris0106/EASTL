@@ -187,11 +187,7 @@ int TestBitsetWithWord()
 
 		b0 = 0x10101010;
 		EATEST_VERIFY(b0.to_uint32_assert_convertible() == 0x00000000);
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_SEPT)
 		b0 = UINT64_C(0x1010101010101010);
-#else
-		b0.from_uint64(UINT64_C(0x1010101010101010));
-#endif
 		EATEST_VERIFY(b0.to_uint64_assert_convertible() == UINT64_C(0x0000000000000000));
 #endif
 
@@ -383,11 +379,7 @@ int TestBitsetWithWord()
 
 		b64 = 0x10101010;
 		EATEST_VERIFY(b64.to_uint32_assert_convertible() == 0x10101010);
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_SEPT)
 		b64 = UINT64_C(0x1010101010101010);
-#else
-		b64.from_uint64(UINT64_C(0x1010101010101010));
-#endif
 		EATEST_VERIFY(b64.to_uint64_assert_convertible() == UINT64_C(0x1010101010101010));
 	}
 

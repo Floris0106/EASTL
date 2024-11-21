@@ -16,10 +16,6 @@ endif()
 
 option(EASTL_STD_ITERATOR_CATEGORY_ENABLED "Enable compatibility with std::iterator categories" OFF)
 
-option(EASTL_DISABLE_APRIL_2024_DEPRECATIONS "Disable use of API marked for removal in April 2024" OFF)
-option(EASTL_DISABLE_SEPT_2024_DEPRECATIONS "Disable use of API marked for removal in September 2024" OFF)
-option(EASTL_DISABLE_APRIL_2025_DEPRECATIONS "Disable use of API marked for removal in April 2025" OFF)
-
 include(CheckCXXCompilerFlag)
 
 check_cxx_compiler_flag("-fchar8_t" EASTL_HAS_FCHAR8T_FLAG)
@@ -59,13 +55,3 @@ if(EASTL_ROOT_PROJECT)
 endif()
 
 target_include_directories(EASTL PUBLIC include)
-
-if(EASTL_DISABLE_APRIL_2024_DEPRECATIONS)
-  target_compile_definitions(EASTL PUBLIC EA_DEPRECATIONS_FOR_2024_APRIL=EA_DISABLED)
-endif()
-if(EASTL_DISABLE_SEPT_2024_DEPRECATIONS)
-  target_compile_definitions(EASTL PUBLIC EA_DEPRECATIONS_FOR_2024_SEPT=EA_DISABLED)
-endif()
-if(EASTL_DISABLE_APRIL_2025_DEPRECATIONS)
-  target_compile_definitions(EASTL PUBLIC EA_DEPRECATIONS_FOR_2025_APRIL=EA_DISABLED)
-endif()

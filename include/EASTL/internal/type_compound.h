@@ -93,7 +93,7 @@ namespace eastl
 	///////////////////////////////////////////////////////////////////////
 
 	template<typename T>
-	struct EASTL_REMOVE_AT_2024_APRIL is_array_of_known_bounds
+	struct [[deprecated]] is_array_of_known_bounds
 		: public eastl::integral_constant<bool, eastl::extent<T>::value != 0> {};
 
 
@@ -109,7 +109,7 @@ namespace eastl
 	///////////////////////////////////////////////////////////////////////
 
 	template<typename T>
-	struct EASTL_REMOVE_AT_2024_APRIL is_array_of_unknown_bounds
+	struct [[deprecated]] is_array_of_unknown_bounds
 		: public eastl::integral_constant<bool, eastl::is_array<T>::value && (eastl::extent<T>::value == 0)> {};
 
 
@@ -346,7 +346,7 @@ namespace eastl
 		template <typename T> struct is_union : public false_type{};
 	#endif
 
-	#define EASTL_DECLARE_UNION(T) namespace eastl{ template <> struct EASTL_REMOVE_AT_2024_APRIL is_union<T> : public true_type{}; template <> struct is_union<const T> : public true_type{}; }
+	#define EASTL_DECLARE_UNION(T) namespace eastl{ template <> struct [[deprecated]] is_union<T> : public true_type{}; template <> struct is_union<const T> : public true_type{}; }
 
 	#if EASTL_VARIABLE_TEMPLATES_ENABLED
 		template<typename T>

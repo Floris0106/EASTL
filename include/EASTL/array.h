@@ -70,7 +70,7 @@ namespace eastl
 
 		enum
 		{
-			count EASTL_REMOVE_AT_2024_APRIL = N
+			count [[deprecated]] = N
 		};
 
 		// Note that the member data is intentionally public.
@@ -145,7 +145,7 @@ namespace eastl
 
 		enum
 		{
-			count EASTL_REMOVE_AT_2024_APRIL = 0
+			count [[deprecated]] = 0
 		};
 
 		// We intentionally provide no constructor, destructor, or assignment operator.

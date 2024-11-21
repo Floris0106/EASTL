@@ -206,7 +206,7 @@ namespace eastl
 		using base_type::npos;
 		using base_type::GetNewCapacity;
 
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
+#if EA_IS_ENABLED(EA_ENABLED)
 		static_assert(!is_const<value_type>::value, "vector<T> value_type must be non-const.");
 		static_assert(!is_volatile<value_type>::value, "vector<T> value_type must be non-volatile.");
 #endif

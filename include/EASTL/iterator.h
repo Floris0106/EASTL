@@ -85,7 +85,7 @@ namespace eastl
 	// struct iterator
 	template <typename Category, typename T, typename Distance = ptrdiff_t,
 			  typename Pointer = T*, typename Reference = T&>
-	struct EASTL_REMOVE_AT_2024_APRIL iterator
+	struct [[deprecated]] iterator
 	{
 		typedef Category  iterator_category;
 		typedef T         value_type;
@@ -172,7 +172,7 @@ namespace eastl
 	///     is_iterator_wrapper(eastl::reverse_iterator<eastl::move_iterator<int*>>)::value	=> true
 	///
 	template<typename Iterator>
-	class EASTL_REMOVE_AT_2024_SEPT is_iterator_wrapper
+	class [[deprecated]] is_iterator_wrapper
 	{
 #if defined(EA_COMPILER_CLANG) || defined(EA_COMPILER_CLANG_CL)
 		// Using a default template type parameter trick here because
@@ -209,7 +209,7 @@ namespace eastl
 	///     MyVector::iterator it = unwrap_iterator(move_iterator(myVector.begin()));
 	///
 	template <typename Iterator, bool isWrapper>
-	struct EASTL_REMOVE_AT_2024_SEPT is_iterator_wrapper_helper
+	struct [[deprecated]] is_iterator_wrapper_helper
 	{
 		using iterator_type = Iterator;
 
@@ -223,7 +223,7 @@ namespace eastl
 	// disables the warning in this declaration.
 EASTL_INTERNAL_DISABLE_DEPRECATED()
 	template <typename Iterator>
-	struct EASTL_REMOVE_AT_2024_SEPT is_iterator_wrapper_helper<Iterator, true>
+	struct [[deprecated]] is_iterator_wrapper_helper<Iterator, true>
 	{
 		// get_unwrapped must return by value since we're returning
 		// it.unwrap(), and `it` will be out of scope as soon as
@@ -236,7 +236,7 @@ EASTL_INTERNAL_DISABLE_DEPRECATED()
 
 
 	template <typename Iterator>
-	EASTL_REMOVE_AT_2024_SEPT inline typename is_iterator_wrapper_helper<Iterator, eastl::is_iterator_wrapper<Iterator>::value>::iterator_type unwrap_iterator(Iterator it)
+	[[deprecated]] inline typename is_iterator_wrapper_helper<Iterator, eastl::is_iterator_wrapper<Iterator>::value>::iterator_type unwrap_iterator(Iterator it)
 		{ return eastl::is_iterator_wrapper_helper<Iterator, eastl::is_iterator_wrapper<Iterator>::value>::get_unwrapped(it); }
 EASTL_INTERNAL_RESTORE_DEPRECATED()
 
@@ -345,7 +345,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 
 		// Unwrapping interface, not part of the public API.
 		template <typename U = iterator_type>
-		EASTL_REMOVE_AT_2024_SEPT EA_CPP14_CONSTEXPR typename eastl::enable_if<eastl::is_iterator_wrapper<U>::value, reverse_iterator<base_wrapped_iterator_type>>::type unwrap() const
+		[[deprecated]] EA_CPP14_CONSTEXPR typename eastl::enable_if<eastl::is_iterator_wrapper<U>::value, reverse_iterator<base_wrapped_iterator_type>>::type unwrap() const
 		{ return reverse_iterator<base_wrapped_iterator_type>(unwrap_iterator(mIterator)); }
 
 		// The unwrapper helpers need access to unwrap() (when it exists).
@@ -422,7 +422,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	/// move_iterator so we can detect that underneath it's reverse_iterator.
 	///
 	template <typename T>
-	struct EASTL_REMOVE_AT_2024_SEPT is_reverse_iterator
+	struct [[deprecated]] is_reverse_iterator
 		: public eastl::false_type {};
 
 	// Note: some compilers (notably GCC) trigger deprecation warnings when doing template
@@ -431,7 +431,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	// disables the warning in this declaration.
 EASTL_INTERNAL_DISABLE_DEPRECATED()
 	template<typename Iterator>
-	struct EASTL_REMOVE_AT_2024_SEPT is_reverse_iterator<eastl::reverse_iterator<Iterator>>
+	struct [[deprecated]] is_reverse_iterator<eastl::reverse_iterator<Iterator>>
 		: public eastl::true_type {};
 EASTL_INTERNAL_RESTORE_DEPRECATED()
 
@@ -555,7 +555,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	EASTL_INTERNAL_DISABLE_DEPRECATED() // 'is_iterator_wrapper': was declared deprecated
 	private:
 		// Unwrapping interface, not part of the public API.
-		EASTL_REMOVE_AT_2024_SEPT iterator_type unwrap() const
+		[[deprecated]] iterator_type unwrap() const
 			{ return mIterator; }
 
 		// The unwrapper helpers need access to unwrap().
@@ -646,7 +646,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	///     bool IsMoveIterator() { return typename eastl::is_move_iterator<T>::value; }
 	///
 	template <typename T>
-	struct EASTL_REMOVE_AT_2024_SEPT is_move_iterator
+	struct [[deprecated]] is_move_iterator
 		: public eastl::false_type {};
 
 	// Note: some compilers (notably GCC) trigger deprecation warnings when doing template
@@ -655,7 +655,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	// disables the warning in this declaration.
 EASTL_INTERNAL_DISABLE_DEPRECATED()
 	template<typename Iterator>
-	struct EASTL_REMOVE_AT_2024_SEPT is_move_iterator<eastl::move_iterator<Iterator>>
+	struct [[deprecated]] is_move_iterator<eastl::move_iterator<Iterator>>
 		: public eastl::true_type {};
 EASTL_INTERNAL_RESTORE_DEPRECATED()
 
@@ -671,7 +671,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	///
 EASTL_INTERNAL_DISABLE_DEPRECATED() // is_iterator_wrapper_helper is deprecated
 	template <typename Iterator>
-	EASTL_REMOVE_AT_2024_SEPT inline typename eastl::is_iterator_wrapper_helper<Iterator, eastl::is_move_iterator<Iterator>::value>::iterator_type unwrap_move_iterator(Iterator it)
+	[[deprecated]] inline typename eastl::is_iterator_wrapper_helper<Iterator, eastl::is_move_iterator<Iterator>::value>::iterator_type unwrap_move_iterator(Iterator it)
 	{
 		// get_unwrapped(it) -> it.unwrap() which is equivalent to `it.base()` for move_iterator and to `it` otherwise.
 		return eastl::is_iterator_wrapper_helper<Iterator, eastl::is_move_iterator<Iterator>::value>::get_unwrapped(it);
@@ -868,7 +868,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	/// If it's a insert_iterator wrapped by another iterator then value is false.
 	///
 	template <typename T>
-	struct EASTL_REMOVE_AT_2024_SEPT is_insert_iterator
+	struct [[deprecated]] is_insert_iterator
 		: public eastl::false_type {};
 
 	// Note: some compilers (notably GCC) trigger deprecation warnings when doing template
@@ -877,7 +877,7 @@ EASTL_INTERNAL_RESTORE_DEPRECATED()
 	// disables the warning in this declaration.
 EASTL_INTERNAL_DISABLE_DEPRECATED()
 	template<typename Iterator>
-	struct EASTL_REMOVE_AT_2024_SEPT is_insert_iterator<eastl::insert_iterator<Iterator>>
+	struct [[deprecated]] is_insert_iterator<eastl::insert_iterator<Iterator>>
 		: public eastl::true_type {};
 EASTL_INTERNAL_RESTORE_DEPRECATED()
 

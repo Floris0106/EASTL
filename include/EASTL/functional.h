@@ -487,7 +487,7 @@ namespace eastl
 
 	// deprecated. consider using the specialization equal_to<> instead.
 	template <typename T, typename U>
-	struct EASTL_REMOVE_AT_2024_APRIL equal_to_2
+	struct [[deprecated]] equal_to_2
 	{
 		EA_CPP14_CONSTEXPR bool operator()(const T& a, const U& b) const
 			{ return a == b; }
@@ -498,7 +498,7 @@ namespace eastl
 	};
 
 	template <typename T, typename U>
-	struct EASTL_REMOVE_AT_2024_APRIL not_equal_to_2
+	struct [[deprecated]] not_equal_to_2
 	{
 		EA_CPP14_CONSTEXPR bool operator()(const T& a, const U& b) const
 			{ return a != b; }
@@ -510,7 +510,7 @@ namespace eastl
 
 
 	template <typename T, typename U>
-	struct EASTL_REMOVE_AT_2024_APRIL less_2
+	struct [[deprecated]] less_2
 	{
 		EA_CPP14_CONSTEXPR bool operator()(const T& a, const U& b) const
 			{ return a < b; }
@@ -525,7 +525,7 @@ namespace eastl
 	/// unary_negate
 	///
 	template <typename Predicate>
-	class EASTL_REMOVE_AT_2024_APRIL unary_negate
+	class [[deprecated]] unary_negate
 	{
 		protected:
 			Predicate mPredicate;
@@ -537,7 +537,7 @@ namespace eastl
 	};
 
 	template <typename Predicate>
-	EASTL_REMOVE_AT_2024_APRIL inline EA_CPP14_CONSTEXPR unary_negate<Predicate> not1(const Predicate& predicate)
+	[[deprecated]] inline EA_CPP14_CONSTEXPR unary_negate<Predicate> not1(const Predicate& predicate)
 		{ return unary_negate<Predicate>(predicate); }
 
 
@@ -545,7 +545,7 @@ namespace eastl
 	/// binary_negate
 	///
 	template <typename Predicate>
-	class EASTL_REMOVE_AT_2024_APRIL binary_negate
+	class [[deprecated]] binary_negate
 	{
 		protected:
 			Predicate mPredicate;
@@ -557,7 +557,7 @@ namespace eastl
 	};
 
 	template <typename Predicate>
-	EASTL_REMOVE_AT_2024_APRIL inline EA_CPP14_CONSTEXPR binary_negate<Predicate> not2(const Predicate& predicate)
+	[[deprecated]] inline EA_CPP14_CONSTEXPR binary_negate<Predicate> not2(const Predicate& predicate)
 		{ return binary_negate<Predicate>(predicate); }
 
 
@@ -565,7 +565,7 @@ namespace eastl
 	/// unary_compose
 	///
 	template<typename Operation1, typename Operation2>
-	struct EASTL_REMOVE_AT_2024_APRIL unary_compose
+	struct [[deprecated]] unary_compose
 	{
 	protected:
 		Operation1 op1;
@@ -583,7 +583,7 @@ namespace eastl
 	};
 
 	template<typename Operation1,typename Operation2>
-	EASTL_REMOVE_AT_2024_APRIL inline unary_compose<Operation1,Operation2>
+	[[deprecated]] inline unary_compose<Operation1,Operation2>
 	compose1(const Operation1& op1, const Operation2& op2)
 	{
 		return unary_compose<Operation1, Operation2>(op1,op2);
@@ -592,7 +592,7 @@ namespace eastl
 	/// binary_compose
 	///
 	template <class Operation1, class Operation2, class Operation3>
-	class EASTL_REMOVE_AT_2024_APRIL binary_compose
+	class [[deprecated]] binary_compose
 	{
 	protected:
 		Operation1 op1;
@@ -622,7 +622,7 @@ namespace eastl
 
 
 	template <class Operation1, class Operation2, class Operation3>
-	EASTL_REMOVE_AT_2024_APRIL inline binary_compose<Operation1, Operation2, Operation3>
+	[[deprecated]] inline binary_compose<Operation1, Operation2, Operation3>
 	compose2(const Operation1& op1, const Operation2& op2, const Operation3& op3)
 	{
 		return binary_compose<Operation1, Operation2, Operation3>(op1, op2, op3);
@@ -646,7 +646,7 @@ namespace eastl
 	///     random_shuffle(pArrayBegin, pArrayEnd, randInstance);
 	///
 	template <typename Arg, typename Result>
-	class EASTL_REMOVE_AT_2024_APRIL pointer_to_unary_function
+	class [[deprecated]] pointer_to_unary_function
 		: public unary_function<Arg, Result>
 	{
 	protected:
@@ -673,7 +673,7 @@ namespace eastl
 	///    transform(pIntArrayBegin, pIntArrayEnd, pIntArrayBegin, ptr_fun(factorial));
 	///
 	template <typename Arg, typename Result>
-	EASTL_REMOVE_AT_2024_APRIL inline pointer_to_unary_function<Arg, Result>
+	[[deprecated]] inline pointer_to_unary_function<Arg, Result>
 		ptr_fun(Result (*pFunction)(Arg))
 		{ return pointer_to_unary_function<Arg, Result>(pFunction); }
 
@@ -692,7 +692,7 @@ namespace eastl
 	/// work in many cases where the system requires a function object.
 	///
 	template <typename Arg1, typename Arg2, typename Result>
-	class EASTL_REMOVE_AT_2024_APRIL pointer_to_binary_function
+	class [[deprecated]] pointer_to_binary_function
 		: public binary_function<Arg1, Arg2, Result>
 	{
 	protected:
@@ -717,7 +717,7 @@ namespace eastl
 	///    transform(pIntArray1Begin, pIntArray1End, pIntArray2Begin, pIntArray1Begin, ptr_fun(multiply));
 	///
 	template <typename Arg1, typename Arg2, typename Result>
-	EASTL_REMOVE_AT_2024_APRIL inline pointer_to_binary_function<Arg1, Arg2, Result>
+	[[deprecated]] inline pointer_to_binary_function<Arg1, Arg2, Result>
 	ptr_fun(Result (*pFunction)(Arg1, Arg2))
 		{ return pointer_to_binary_function<Arg1, Arg2, Result>(pFunction); }
 
@@ -745,7 +745,7 @@ namespace eastl
 	/// Member function with no arguments.
 	///
 	template <typename Result, typename T> 
-	class EASTL_REMOVE_AT_2024_APRIL mem_fun_t
+	class [[deprecated]] mem_fun_t
 		: public unary_function<T*, Result>
 	{
 	public:
@@ -772,7 +772,7 @@ namespace eastl
 	/// Member function with one argument.
 	///
 	template <typename Result, typename T, typename Argument>
-	class EASTL_REMOVE_AT_2024_APRIL mem_fun1_t
+	class [[deprecated]] mem_fun1_t
 		: public binary_function<T*, Argument, Result>
 	{
 	public:
@@ -802,7 +802,7 @@ namespace eastl
 	/// The C++ standard is in error and this has been recognized by the defect group.
 	///
 	template <typename Result, typename T>
-	class EASTL_REMOVE_AT_2024_APRIL const_mem_fun_t
+	class [[deprecated]] const_mem_fun_t
 		: public unary_function<const T*, Result>
 	{
 	public:
@@ -832,7 +832,7 @@ namespace eastl
 	/// The C++ standard is in error and this has been recognized by the defect group.
 	///
 	template <typename Result, typename T, typename Argument>
-	class EASTL_REMOVE_AT_2024_APRIL const_mem_fun1_t
+	class [[deprecated]] const_mem_fun1_t
 		: public binary_function<const T*, Argument, Result>
 	{
 	public:
@@ -866,28 +866,28 @@ namespace eastl
 	/// Note: using conventional inlining here to avoid issues on GCC/Linux
 	///
 	template <typename Result, typename T>
-	EASTL_REMOVE_AT_2024_APRIL inline mem_fun_t<Result, T>
+	[[deprecated]] inline mem_fun_t<Result, T>
 	mem_fun(Result (T::*MemberFunction)())
 	{
 		return eastl::mem_fun_t<Result, T>(MemberFunction);
 	}
 
 	template <typename Result, typename T, typename Argument>
-	EASTL_REMOVE_AT_2024_APRIL inline mem_fun1_t<Result, T, Argument>
+	[[deprecated]] inline mem_fun1_t<Result, T, Argument>
 	mem_fun(Result (T::*MemberFunction)(Argument))
 	{
 		return eastl::mem_fun1_t<Result, T, Argument>(MemberFunction);
 	}
 
 	template <typename Result, typename T>
-	EASTL_REMOVE_AT_2024_APRIL inline const_mem_fun_t<Result, T>
+	[[deprecated]] inline const_mem_fun_t<Result, T>
 	mem_fun(Result (T::*MemberFunction)() const)
 	{
 		return eastl::const_mem_fun_t<Result, T>(MemberFunction);
 	}
 
 	template <typename Result, typename T, typename Argument>
-	EASTL_REMOVE_AT_2024_APRIL inline const_mem_fun1_t<Result, T, Argument>
+	[[deprecated]] inline const_mem_fun1_t<Result, T, Argument>
 	mem_fun(Result (T::*MemberFunction)(Argument) const)
 	{
 		return eastl::const_mem_fun1_t<Result, T, Argument>(MemberFunction);
@@ -906,7 +906,7 @@ namespace eastl
 	/// mem_fun_ref_t
 	///
 	template <typename Result, typename T>
-	class EASTL_REMOVE_AT_2024_APRIL mem_fun_ref_t
+	class [[deprecated]] mem_fun_ref_t
 		: public unary_function<T, Result>
 	{
 	public:
@@ -931,7 +931,7 @@ namespace eastl
 	/// mem_fun1_ref_t
 	///
 	template <typename Result, typename T, typename Argument>
-	class EASTL_REMOVE_AT_2024_APRIL mem_fun1_ref_t
+	class [[deprecated]] mem_fun1_ref_t
 		: public binary_function<T, Argument, Result>
 	{
 	public:
@@ -956,7 +956,7 @@ namespace eastl
 	/// const_mem_fun_ref_t
 	///
 	template <typename Result, typename T>
-	class EASTL_REMOVE_AT_2024_APRIL const_mem_fun_ref_t
+	class [[deprecated]] const_mem_fun_ref_t
 		: public unary_function<T, Result>
 	{
 	public:
@@ -981,7 +981,7 @@ namespace eastl
 	/// const_mem_fun1_ref_t
 	///
 	template <typename Result, typename T, typename Argument>
-	class EASTL_REMOVE_AT_2024_APRIL const_mem_fun1_ref_t
+	class [[deprecated]] const_mem_fun1_ref_t
 		: public binary_function<T, Argument, Result>
 	{
 	public:
@@ -1012,28 +1012,28 @@ namespace eastl
 	/// Note: using conventional inlining here to avoid issues on GCC/Linux
 	///
 	template <typename Result, typename T>
-	EASTL_REMOVE_AT_2024_APRIL inline mem_fun_ref_t<Result, T>
+	[[deprecated]] inline mem_fun_ref_t<Result, T>
 	mem_fun_ref(Result (T::*MemberFunction)())
 	{
 		return eastl::mem_fun_ref_t<Result, T>(MemberFunction);
 	}
 
 	template <typename Result, typename T, typename Argument>
-	EASTL_REMOVE_AT_2024_APRIL inline mem_fun1_ref_t<Result, T, Argument>
+	[[deprecated]] inline mem_fun1_ref_t<Result, T, Argument>
 	mem_fun_ref(Result (T::*MemberFunction)(Argument))
 	{
 		return eastl::mem_fun1_ref_t<Result, T, Argument>(MemberFunction);
 	}
 
 	template <typename Result, typename T>
-	EASTL_REMOVE_AT_2024_APRIL inline const_mem_fun_ref_t<Result, T>
+	[[deprecated]] inline const_mem_fun_ref_t<Result, T>
 	mem_fun_ref(Result (T::*MemberFunction)() const)
 	{
 		return eastl::const_mem_fun_ref_t<Result, T>(MemberFunction);
 	}
 
 	template <typename Result, typename T, typename Argument>
-	EASTL_REMOVE_AT_2024_APRIL inline const_mem_fun1_ref_t<Result, T, Argument>
+	[[deprecated]] inline const_mem_fun1_ref_t<Result, T, Argument>
 	mem_fun_ref(Result (T::*MemberFunction)(Argument) const)
 	{
 		return eastl::const_mem_fun1_ref_t<Result, T, Argument>(MemberFunction);

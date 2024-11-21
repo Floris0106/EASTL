@@ -788,7 +788,7 @@ namespace eastl
 	//
 #if defined(_MSC_VER)
 	template <typename T1, typename T2, typename DeduceT1, typename DeduceT2>
-	EASTL_REMOVE_AT_2024_SEPT EA_CPP14_CONSTEXPR inline pair<T1, T2> make_pair(
+	[[deprecated]] EA_CPP14_CONSTEXPR inline pair<T1, T2> make_pair(
 		const DeduceT1& a,
 		const DeduceT2& b,
 		typename eastl::enable_if<!eastl::is_array<T1>::value && !eastl::is_array<T2>::value>::type* = 0)
@@ -799,7 +799,7 @@ namespace eastl
 
 	// use make_pair() instead. they are equivalent.
 	template <typename T1, typename T2>
-	EASTL_REMOVE_AT_2024_SEPT
+	[[deprecated]]
 	EA_CPP14_CONSTEXPR inline pair<typename eastl::remove_reference_wrapper<typename eastl::decay<T1>::type>::type, 
 								   typename eastl::remove_reference_wrapper<typename eastl::decay<T2>::type>::type>
 	make_pair_ref(T1&& a, T2&& b)

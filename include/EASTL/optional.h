@@ -866,8 +866,8 @@ namespace eastl
 	template <typename T>
 	struct hash<eastl::optional<T>>
 	{
-		EASTL_REMOVE_AT_2024_APRIL typedef eastl::optional<T> argument_type;
-		EASTL_REMOVE_AT_2024_APRIL typedef size_t result_type;
+		[[deprecated]] typedef eastl::optional<T> argument_type;
+		[[deprecated]] typedef size_t result_type;
 
 		size_t operator()(const eastl::optional<T>& opt) const EA_NOEXCEPT
 	    {

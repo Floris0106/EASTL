@@ -345,8 +345,8 @@ namespace eastl
 		// The following splice_after funcions are deprecated, as they don't allow for recognizing 
 		// the allocator, cannot maintain the source mSize, and are not in the C++11 Standard definition 
 		// of std::forward_list (which is the equivalent of this class).
-		EASTL_REMOVE_AT_2024_APRIL void splice_after(const_iterator position, const_iterator before_first, const_iterator before_last);  // before_first and before_last come from a source container.
-		EASTL_REMOVE_AT_2024_APRIL void splice_after(const_iterator position, const_iterator previous);                                  // previous comes from a source container.
+		[[deprecated]] void splice_after(const_iterator position, const_iterator before_first, const_iterator before_last);  // before_first and before_last come from a source container.
+		[[deprecated]] void splice_after(const_iterator position, const_iterator previous);                                  // previous comes from a source container.
 
 		size_type unique();
 

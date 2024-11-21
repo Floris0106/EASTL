@@ -1277,7 +1277,7 @@ namespace eastl
 
 
 	template <bool isMove, typename BidirectionalIterator1, typename BidirectionalIterator2>
-	EASTL_REMOVE_AT_2024_SEPT inline BidirectionalIterator2 move_and_copy_backward_unwrapper(BidirectionalIterator1 first, BidirectionalIterator1 last, BidirectionalIterator2 resultEnd)
+	[[deprecated]] inline BidirectionalIterator2 move_and_copy_backward_unwrapper(BidirectionalIterator1 first, BidirectionalIterator1 last, BidirectionalIterator2 resultEnd)
 	{
 		EASTL_INTERNAL_DISABLE_DEPRECATED() // 'unwrap_iterator': was declared deprecated
 		return BidirectionalIterator2(eastl::move_and_copy_backward_chooser<isMove>(eastl::unwrap_iterator(first), eastl::unwrap_iterator(last), eastl::unwrap_iterator(resultEnd))); // Have to convert to BidirectionalIterator2 because result.base() could be a T*

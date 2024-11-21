@@ -41,7 +41,7 @@ namespace eastl
 	///     typedef generic_iterator<int*, char> IntArrayIteratorOther;
 	///
 	template <typename Iterator, typename Container = void>
-	class EASTL_REMOVE_AT_2024_SEPT generic_iterator
+	class [[deprecated]] generic_iterator
 	{
 	protected:
 		Iterator mIterator;
@@ -184,10 +184,10 @@ namespace eastl
 	/// A primary reason to do so is that you can get at the pointer within the generic_iterator.
 	///
 	template <typename Iterator>
-	struct EASTL_REMOVE_AT_2024_SEPT is_generic_iterator : public false_type { };
+	struct [[deprecated]] is_generic_iterator : public false_type { };
 
 	template <typename Iterator, typename Container>
-	struct EASTL_REMOVE_AT_2024_SEPT is_generic_iterator<generic_iterator<Iterator, Container> > : public true_type { };
+	struct [[deprecated]] is_generic_iterator<generic_iterator<Iterator, Container> > : public true_type { };
 
 
 	/// unwrap_generic_iterator
@@ -200,7 +200,7 @@ namespace eastl
 	///      vector<int>::iterator it = unwrap_generic_iterator(genericIterator);
 	///
 	template <typename Iterator>
-	EASTL_REMOVE_AT_2024_SEPT inline typename eastl::is_iterator_wrapper_helper<Iterator, eastl::is_generic_iterator<Iterator>::value>::iterator_type unwrap_generic_iterator(Iterator it)
+	[[deprecated]] inline typename eastl::is_iterator_wrapper_helper<Iterator, eastl::is_generic_iterator<Iterator>::value>::iterator_type unwrap_generic_iterator(Iterator it)
 	{
 		// get_unwrapped(it) -> it.unwrap() which is equivalent to `it.base()` for generic_iterator and to `it` otherwise.
 		return eastl::is_iterator_wrapper_helper<Iterator, eastl::is_generic_iterator<Iterator>::value>::get_unwrapped(it);

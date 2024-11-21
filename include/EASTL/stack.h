@@ -118,7 +118,7 @@ namespace eastl
 		void push(const value_type& value);
 		void push(value_type&& x);
 
-		template <class... Args> EASTL_REMOVE_AT_2024_SEPT void emplace_back(Args&&... args); // use emplace() instead. they are equivalent.
+		template <class... Args> [[deprecated]] void emplace_back(Args&&... args); // use emplace() instead. they are equivalent.
 		template <class... Args> decltype(auto) emplace(Args&&... args);
 
 		void pop();

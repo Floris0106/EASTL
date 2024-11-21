@@ -176,19 +176,19 @@ namespace eastl
 
 
 	template <typename Argument, typename Result>
-	struct EASTL_REMOVE_AT_2024_APRIL unary_function
+	struct [[deprecated]] unary_function
 	{
-		EASTL_REMOVE_AT_2024_APRIL typedef Argument argument_type;
-		EASTL_REMOVE_AT_2024_APRIL typedef Result   result_type;
+		[[deprecated]] typedef Argument argument_type;
+		[[deprecated]] typedef Result   result_type;
 	};
 
 
 	template <typename Argument1, typename Argument2, typename Result>
-	struct EASTL_REMOVE_AT_2024_APRIL binary_function
+	struct [[deprecated]] binary_function
 	{
-		EASTL_REMOVE_AT_2024_APRIL typedef Argument1 first_argument_type;
-		EASTL_REMOVE_AT_2024_APRIL typedef Argument2 second_argument_type;
-		EASTL_REMOVE_AT_2024_APRIL typedef Result    result_type;
+		[[deprecated]] typedef Argument1 first_argument_type;
+		[[deprecated]] typedef Argument2 second_argument_type;
+		[[deprecated]] typedef Result    result_type;
 	};
 
 
@@ -357,7 +357,7 @@ namespace eastl
 	///
 	EASTL_INTERNAL_DISABLE_DEPRECATED() // unariy_function is deprecated
 	template <typename Operation>
-	class EASTL_REMOVE_AT_2024_APRIL binder1st : public unary_function<typename Operation::second_argument_type, typename Operation::result_type>
+	class [[deprecated]] binder1st : public unary_function<typename Operation::second_argument_type, typename Operation::result_type>
 	{
 		protected:
 			typename Operation::first_argument_type value;
@@ -378,7 +378,7 @@ namespace eastl
 
 	EASTL_INTERNAL_DISABLE_DEPRECATED() // 'eastl::binder1st<Operation>': was declared deprecated
 	template <typename Operation, typename T>
-	EASTL_REMOVE_AT_2024_APRIL inline binder1st<Operation> bind1st(const Operation& op, const T& x)
+	[[deprecated]] inline binder1st<Operation> bind1st(const Operation& op, const T& x)
 	{
 		typedef typename Operation::first_argument_type value;
 		return binder1st<Operation>(op, value(x));
@@ -389,7 +389,7 @@ namespace eastl
 	///
 	EASTL_INTERNAL_DISABLE_DEPRECATED() // unariy_function is deprecated
 	template <typename Operation>
-	class EASTL_REMOVE_AT_2024_APRIL binder2nd : public unary_function<typename Operation::first_argument_type, typename Operation::result_type>
+	class [[deprecated]] binder2nd : public unary_function<typename Operation::first_argument_type, typename Operation::result_type>
 	{
 		protected:
 			Operation op;
@@ -410,7 +410,7 @@ namespace eastl
 
 	EASTL_INTERNAL_DISABLE_DEPRECATED() // 'eastl::binder2nd<Operation>': was declared deprecated
 	template <typename Operation, typename T>
-	EASTL_REMOVE_AT_2024_APRIL inline binder2nd<Operation> bind2nd(const Operation& op, const T& x)
+	[[deprecated]] inline binder2nd<Operation> bind2nd(const Operation& op, const T& x)
 	{
 		typedef typename Operation::second_argument_type value;
 		return binder2nd<Operation>(op, value(x));

@@ -124,7 +124,7 @@ namespace eastl
 		void push(value_type&& x);
 
 		template <class... Args>
-		EASTL_REMOVE_AT_2024_APRIL void emplace_back(Args&&... args); // backwards compatibility
+		[[deprecated]] void emplace_back(Args&&... args); // backwards compatibility
 
 		template <class... Args>
 		decltype(auto) emplace(Args&&... args);

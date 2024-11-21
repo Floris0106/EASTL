@@ -1746,45 +1746,6 @@ typedef EASTL_SSIZE_T eastl_ssize_t; // Signed version of eastl_size_t. Concept 
 	#define EASTL_CONSTEXPR_BIT_CAST_SUPPORTED 0
 #endif
 
-// EASTL deprecation macros:
-// 
-// EASTL_DEPRECATIONS_FOR_2024_APRIL
-// This macro is provided as a means to disable warnings temporarily (in particular if a user is compiling with warnings as errors).
-// All deprecations raised by this macro (when it is EA_ENABLED) are scheduled for removal approximately April 2024.
-
-#ifndef EASTL_DEPRECATIONS_FOR_2024_APRIL
-	#if defined(EA_DEPRECATIONS_FOR_2024_APRIL)
-		#define EASTL_DEPRECATIONS_FOR_2024_APRIL EA_DEPRECATIONS_FOR_2024_APRIL
-	#else
-		#define EASTL_DEPRECATIONS_FOR_2024_APRIL EA_ENABLED
-	#endif
-#endif
-
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
-	#define EASTL_REMOVE_AT_2024_APRIL EA_DEPRECATED
-#else
-	#define EASTL_REMOVE_AT_2024_APRIL
-#endif
-
-// EASTL_DEPRECATIONS_FOR_2024_SEPT
-// This macro is provided as a means to disable warnings temporarily (in particular if a user is compiling with warnings
-// as errors). All deprecations raised by this macro (when it is EA_ENABLED) are scheduled for removal approximately
-// September 2024.
-
-#ifndef EASTL_DEPRECATIONS_FOR_2024_SEPT
-	#if defined(EA_DEPRECATIONS_FOR_2024_SEPT)
-		#define EASTL_DEPRECATIONS_FOR_2024_SEPT EA_DEPRECATIONS_FOR_2024_SEPT
-	#else
-		#define EASTL_DEPRECATIONS_FOR_2024_SEPT EA_ENABLED
-	#endif
-#endif
-
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_SEPT)
-	#define EASTL_REMOVE_AT_2024_SEPT EA_DEPRECATED
-#else
-	#define EASTL_REMOVE_AT_2024_SEPT
-#endif
-
 // For internal (to EASTL) use only (ie. tests).
 #define EASTL_INTERNAL_DISABLE_DEPRECATED()					\
 	EA_DISABLE_VC_WARNING(4996);							\

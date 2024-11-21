@@ -87,7 +87,7 @@ namespace eastl
 		using base_type::assign;
 		using base_type::npos;
 
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
+#if EA_IS_ENABLED(EA_ENABLED)
 		static_assert(!is_const<value_type>::value, "fixed_vector<T> value_type must be non-const.");
 		static_assert(!is_volatile<value_type>::value, "fixed_vector<T> value_type must be non-volatile.");
 #endif

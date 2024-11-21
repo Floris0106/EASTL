@@ -147,10 +147,10 @@ namespace eastl
 
 	#define EASTL_DECLARE_INTEGRAL(T)                                             \
 	namespace eastl{                                                              \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_integral<T>                : public true_type{};    \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_integral<const T>          : public true_type{};    \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_integral<volatile T>       : public true_type{};    \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_integral<const volatile T> : public true_type{};    \
+		template <> struct [[deprecated]] is_integral<T>                : public true_type{};    \
+		template <> struct [[deprecated]] is_integral<const T>          : public true_type{};    \
+		template <> struct [[deprecated]] is_integral<volatile T>       : public true_type{};    \
+		template <> struct [[deprecated]] is_integral<const volatile T> : public true_type{};    \
 	}
 
 	#if EASTL_VARIABLE_TEMPLATES_ENABLED
@@ -182,10 +182,10 @@ namespace eastl
 
 	#define EASTL_DECLARE_FLOATING_POINT(T)                                             \
 	namespace eastl{                                                                    \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_floating_point<T>                : public true_type{};    \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_floating_point<const T>          : public true_type{};    \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_floating_point<volatile T>       : public true_type{};    \
-		template <> struct EASTL_REMOVE_AT_2024_APRIL is_floating_point<const volatile T> : public true_type{};    \
+		template <> struct [[deprecated]] is_floating_point<T>                : public true_type{};    \
+		template <> struct [[deprecated]] is_floating_point<const T>          : public true_type{};    \
+		template <> struct [[deprecated]] is_floating_point<volatile T>       : public true_type{};    \
+		template <> struct [[deprecated]] is_floating_point<const volatile T> : public true_type{};    \
 	}
 
 	#if EASTL_VARIABLE_TEMPLATES_ENABLED
@@ -310,7 +310,7 @@ namespace eastl
 		EA_CONSTEXPR bool is_enum_v = is_enum<T>::value;
 	#endif
 
-	#define EASTL_DECLARE_ENUM(T) namespace eastl{ template <> struct EASTL_REMOVE_AT_2024_APRIL is_enum<T> : public true_type{}; template <> struct EASTL_REMOVE_AT_2024_APRIL is_enum<const T> : public true_type{}; }
+	#define EASTL_DECLARE_ENUM(T) namespace eastl{ template <> struct [[deprecated]] is_enum<T> : public true_type{}; template <> struct [[deprecated]] is_enum<const T> : public true_type{}; }
 
 
 

@@ -266,8 +266,8 @@ namespace eastl
 		// non-standard! this was originally inherited from vector with incorrect semantics.
 		// this is only defined so that we can deprecate it.
 		// use `*(map.begin() + index)` if you want to get an element by index.
-		EASTL_REMOVE_AT_2024_SEPT reference at(size_type index);
-		EASTL_REMOVE_AT_2024_SEPT const_reference at(size_type index) const;
+		[[deprecated]] reference at(size_type index);
+		[[deprecated]] const_reference at(size_type index) const;
 		// after the deprecation period the above should be replaced with:
 		// mapped_type& at(const key_type& k) { return at_key(k); }
 		// const mapped_type& at(const key_type& k) const { return at_key(k); }

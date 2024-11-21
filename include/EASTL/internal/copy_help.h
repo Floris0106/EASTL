@@ -157,7 +157,7 @@ namespace eastl
 
 	// We have a second layer of unwrap_iterator calls because the original iterator might be something like move_iterator<reverse_iterator<int*> > (i.e. doubly-wrapped).
 	template <bool isMove, typename InputIterator, typename OutputIterator>
-	EASTL_REMOVE_AT_2024_SEPT inline OutputIterator move_and_copy_unwrapper(InputIterator first, InputIterator last, OutputIterator result)
+	[[deprecated]] inline OutputIterator move_and_copy_unwrapper(InputIterator first, InputIterator last, OutputIterator result)
 	{
 		EASTL_INTERNAL_DISABLE_DEPRECATED() // 'unwrap_iterator': was declared deprecated
 		return OutputIterator(eastl::move_and_copy_chooser<isMove>(eastl::unwrap_iterator(first), eastl::unwrap_iterator(last), eastl::unwrap_iterator(result))); // Have to convert to OutputIterator because unwrap_iterator(result) could be a T*

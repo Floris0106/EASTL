@@ -126,7 +126,7 @@ namespace eastl
 	///    return_temporary_buffer(pr.first);
 	/// 
 	template <typename T>
-	EASTL_REMOVE_AT_2024_APRIL
+	[[deprecated]]
 	eastl::pair<T*, ptrdiff_t> get_temporary_buffer(ptrdiff_t n, size_t alignment = 1, size_t alignmentOffset = 0, const char* pName = EASTL_TEMP_DEFAULT_NAME)
 	{
 		EASTLAllocatorType allocator(*EASTLAllocatorDefault(), pName);
@@ -328,7 +328,7 @@ namespace eastl
 	/// of an output iterator (24.2.4).
 
 	template <typename OutputIterator, typename T>
-	class EASTL_REMOVE_AT_2024_APRIL raw_storage_iterator
+	class [[deprecated]] raw_storage_iterator
 	{
 	protected:
 		OutputIterator mIterator;
@@ -495,7 +495,7 @@ namespace eastl
 	///     uninitialized_relocate_commit(first, last, dest);
 	///
 	template <typename ForwardIterator, typename ForwardIteratorDest>
-	EASTL_REMOVE_AT_2024_APRIL inline ForwardIteratorDest uninitialized_relocate_start(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
+	[[deprecated]] inline ForwardIteratorDest uninitialized_relocate_start(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
 	{
 		typedef typename eastl::iterator_traits<ForwardIterator>::iterator_category IC;
 		typedef typename eastl::iterator_traits<ForwardIterator>::value_type value_type_input;
@@ -512,7 +512,7 @@ namespace eastl
 	}
 
 	template <typename ForwardIterator, typename ForwardIteratorDest>
-	EASTL_REMOVE_AT_2024_APRIL inline ForwardIteratorDest uninitialized_relocate_commit(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
+	[[deprecated]] inline ForwardIteratorDest uninitialized_relocate_commit(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
 	{
 		typedef typename eastl::iterator_traits<ForwardIterator>::iterator_category IC;
 		typedef typename eastl::iterator_traits<ForwardIterator>::value_type value_type_input;
@@ -529,7 +529,7 @@ namespace eastl
 	}
 
 	template <typename ForwardIterator, typename ForwardIteratorDest>
-	EASTL_REMOVE_AT_2024_APRIL inline ForwardIteratorDest uninitialized_relocate_abort(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
+	[[deprecated]] inline ForwardIteratorDest uninitialized_relocate_abort(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
 	{
 		typedef typename eastl::iterator_traits<ForwardIterator>::iterator_category IC;
 		typedef typename eastl::iterator_traits<ForwardIterator>::value_type value_type_input;
@@ -550,7 +550,7 @@ namespace eastl
 	/// See above for documentation.
 	///
 	template <typename ForwardIterator, typename ForwardIteratorDest>
-	EASTL_REMOVE_AT_2024_APRIL inline ForwardIteratorDest uninitialized_relocate(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
+	[[deprecated]] inline ForwardIteratorDest uninitialized_relocate(ForwardIterator first, ForwardIterator last, ForwardIteratorDest dest)
 	{
 		ForwardIteratorDest result = uninitialized_relocate_start(first, last, dest);
 		eastl::uninitialized_relocate_commit(first, last, dest);
@@ -728,7 +728,7 @@ namespace eastl
 	/// internally it uses generic_iterator to make pointers act like regular eastl::iterator.
 	/// 
 	template <typename First, typename Last, typename Result>
-	EASTL_REMOVE_AT_2024_SEPT inline Result uninitialized_copy_ptr(First first, Last last, Result result)
+	[[deprecated]] inline Result uninitialized_copy_ptr(First first, Last last, Result result)
 	{
 		return eastl::uninitialized_copy(first, last, result);
 	}
@@ -741,7 +741,7 @@ namespace eastl
 	/// internally it uses generic_iterator to make pointers act like regular eastl::iterator.
 	/// 
 	template <typename First, typename Last, typename Result>
-	EASTL_REMOVE_AT_2024_SEPT inline Result uninitialized_move_ptr(First first, Last last, Result dest)
+	[[deprecated]] inline Result uninitialized_move_ptr(First first, Last last, Result dest)
 	{
 		return uninitialized_move(first, last, dest);
 	}
@@ -791,7 +791,7 @@ namespace eastl
 	/// uninitialized_move_ptr_if_noexcept
 	///
 	template <typename First, typename Last, typename Result>
-	EASTL_REMOVE_AT_2024_SEPT inline Result uninitialized_move_ptr_if_noexcept(First first, Last last, Result dest)
+	[[deprecated]] inline Result uninitialized_move_ptr_if_noexcept(First first, Last last, Result dest)
 	{
 		return eastl::uninitialized_move_if_noexcept(first, last, dest);
 	}
@@ -830,7 +830,7 @@ namespace eastl
 	///    void uninitialized_default_fill(ForwardIterator destinationFirst, ForwardIterator destinationLast);
 	///
 	template <typename ForwardIterator>
-	EASTL_REMOVE_AT_2024_APRIL inline void uninitialized_default_fill(ForwardIterator first, ForwardIterator last)
+	[[deprecated]] inline void uninitialized_default_fill(ForwardIterator first, ForwardIterator last)
 	{
 		typedef typename eastl::iterator_traits<ForwardIterator>::value_type value_type;
 		ForwardIterator currentDest(first);
@@ -898,7 +898,7 @@ namespace eastl
 	}
 
 	template <typename ForwardIterator, typename Count>
-	EASTL_REMOVE_AT_2024_APRIL inline void uninitialized_default_fill_n(ForwardIterator first, Count n)
+	[[deprecated]] inline void uninitialized_default_fill_n(ForwardIterator first, Count n)
 	{
 		typedef typename eastl::iterator_traits<ForwardIterator>::value_type value_type;
 		Internal::uninitialized_default_fill_n_impl(first, n, is_scalar<value_type>());
@@ -1091,7 +1091,7 @@ namespace eastl
 	/// can't do with a pointer by itself.
 	///
 	template <typename T>
-	EASTL_REMOVE_AT_2024_SEPT inline void uninitialized_fill_ptr(T* first, T* last, const T& value)
+	[[deprecated]] inline void uninitialized_fill_ptr(T* first, T* last, const T& value)
 	{
 		uninitialized_fill(first, last, value);
 	}
@@ -1155,7 +1155,7 @@ namespace eastl
 	/// can't do with a pointer by itself.
 	///
 	template <typename T, typename Count>
-	EASTL_REMOVE_AT_2024_SEPT inline void uninitialized_fill_n_ptr(T* first, Count n, const T& value)
+	[[deprecated]] inline void uninitialized_fill_n_ptr(T* first, Count n, const T& value)
 	{
 		uninitialized_fill_n(first, n, value);
 	}

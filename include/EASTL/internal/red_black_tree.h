@@ -158,7 +158,7 @@ namespace eastl
 		typedef Reference                                   reference;
 		typedef EASTL_ITC_NS::bidirectional_iterator_tag    iterator_category;
 
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
+#if EA_IS_ENABLED(EA_ENABLED)
 	private:
 		base_node_type* mpNode;
 #else
@@ -186,7 +186,7 @@ namespace eastl
 	private:
 		// This is a temp helper function for the deprecation.
 		// It should be removed when the deprecation window ends.
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
+#if EA_IS_ENABLED(EA_ENABLED)
 		base_node_type* toInternalNodeType(base_node_type* node) { return node; }
 #else
 		node_type* toInternalNodeType(base_node_type* node) { return static_cast<node_type*>(node); }

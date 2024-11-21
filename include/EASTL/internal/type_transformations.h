@@ -261,7 +261,7 @@ namespace eastl
 	///////////////////////////////////////////////////////////////////////
 
 	template<class T>
-	struct EASTL_REMOVE_AT_2024_APRIL add_signed : public make_signed<T>
+	struct [[deprecated]] add_signed : public make_signed<T>
 	{ typedef typename eastl::make_signed<T>::type type; };
 
 
@@ -438,7 +438,7 @@ namespace eastl
 	///////////////////////////////////////////////////////////////////////
 
 	template<class T>
-	struct EASTL_REMOVE_AT_2024_APRIL add_unsigned : public make_unsigned<T>
+	struct [[deprecated]] add_unsigned : public make_unsigned<T>
 	{ typedef typename eastl::make_signed<T>::type type; };
 
 

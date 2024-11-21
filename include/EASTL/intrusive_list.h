@@ -137,7 +137,7 @@ namespace eastl
 		typedef Pointer                                          pointer;
 		typedef Reference                                        reference;
 		typedef EASTL_ITC_NS::bidirectional_iterator_tag         iterator_category;
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
+#if EA_IS_ENABLED(EA_ENABLED)
 	private:
 		base_node_type* mpNode;
 #else
@@ -194,7 +194,7 @@ namespace eastl
 
 		// This is a temp helper function for the deprecation.
 		// It should be removed when the deprecation window ends.
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
+#if EA_IS_ENABLED(EA_ENABLED)
 		base_node_type* toInternalNodeType(base_node_type* node) { return node; }
 #else
 		pointer toInternalNodeType(base_node_type* node) { return static_cast<pointer>(node); }
@@ -367,7 +367,7 @@ namespace eastl
 	private:
 		// This is a helper function to assist with the deprecation,
 		// it should be removed after the deprecation window ends.
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_APRIL)
+#if EA_IS_ENABLED(EA_ENABLED)
 		intrusive_list_node* toListNode(intrusive_list_node* node) { return node; }
 #else
 		intrusive_list_node* toListNode(const node_type* node)

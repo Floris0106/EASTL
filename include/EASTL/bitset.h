@@ -434,7 +434,7 @@ namespace eastl
 
 		bitset();
 
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_SEPT)
+#if EA_IS_ENABLED(EA_ENABLED)
 		// note: this constructor will only copy the minimum of N or unsigned long long's size least significant bits.
 		bitset(unsigned long long value);
 #else
@@ -469,8 +469,8 @@ namespace eastl
 
 		// Deprecated: use the bitset(unsigned long long) constructor instead.
 		// this was a workaround for when our constructor was defined as bitset(uint32_t) and could cause a narrowing conversion.
-		EASTL_REMOVE_AT_2024_SEPT void          from_uint32(uint32_t value);
-		EASTL_REMOVE_AT_2024_SEPT void          from_uint64(uint64_t value);
+		[[deprecated]] void          from_uint32(uint32_t value);
+		[[deprecated]] void          from_uint64(uint64_t value);
 
 		/// to_xxx()
 		/// 
@@ -1628,7 +1628,7 @@ EA_RESTORE_GCC_WARNING()
 	}
 
 	EA_DISABLE_VC_WARNING(6313)
-#if EA_IS_ENABLED(EASTL_DEPRECATIONS_FOR_2024_SEPT)
+#if EA_IS_ENABLED(EA_ENABLED)
 	template <size_t N, typename WordType>
 	inline bitset<N, WordType>::bitset(unsigned long long value)
 	{

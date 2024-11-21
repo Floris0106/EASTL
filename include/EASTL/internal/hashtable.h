@@ -534,7 +534,7 @@ namespace eastl
 		H1 hash_function() const
 			{ return H1(); }
 
-		EASTL_REMOVE_AT_2024_APRIL Equal equal_function() const // Deprecated. Use key_eq() instead, as key_eq is what the new C++ standard 
+		[[deprecated]] Equal equal_function() const // Deprecated. Use key_eq() instead, as key_eq is what the new C++ standard
 			{ return mEqual; }					   // has specified in its hashtable (unordered_*) proposal.
 
 		const Equal& key_eq() const
@@ -624,7 +624,7 @@ namespace eastl
 		H1 hash_function() const
 			{ return m_h1; }
 
-		EASTL_REMOVE_AT_2024_APRIL Equal equal_function() const // Deprecated. Use key_eq() instead, as key_eq is what the new C++ standard 
+		[[deprecated]] Equal equal_function() const // Deprecated. Use key_eq() instead, as key_eq is what the new C++ standard
 			{ return mEqual; }					   // has specified in its hashtable (unordered_*) proposal.
 
 		const Equal& key_eq() const
@@ -695,7 +695,7 @@ namespace eastl
 		H1 hash_function() const
 			{ return m_h1; }
 
-		EASTL_REMOVE_AT_2024_APRIL Equal equal_function() const // Deprecated. Use key_eq() instead, as key_eq is what the new C++ standard 
+		[[deprecated]] Equal equal_function() const // Deprecated. Use key_eq() instead, as key_eq is what the new C++ standard
 			{ return mEqual; }					   // has specified in its hashtable (unordered_*) proposal.
 
 		const Equal& key_eq() const
@@ -871,7 +871,7 @@ namespace eastl
 		enum
 		{
 			// This enumeration is deprecated in favor of eastl::kHashtableAllocFlagBuckets.
-			kAllocFlagBuckets EASTL_REMOVE_AT_2024_APRIL = eastl::kHashtableAllocFlagBuckets                  // Flag to allocator which indicates that we are allocating buckets and not nodes.
+			kAllocFlagBuckets [[deprecated]] = eastl::kHashtableAllocFlagBuckets                  // Flag to allocator which indicates that we are allocating buckets and not nodes.
 		};
 
 	protected:
@@ -3010,7 +3010,7 @@ namespace eastl
 	//
 	template <typename K, typename V, typename A, typename EK, typename Eq,
 			  typename H1, typename H2, typename H, typename RP, bool bC, bool bM, bool bU>
-	EASTL_REMOVE_AT_2024_APRIL inline bool operator<(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
+	[[deprecated]] inline bool operator<(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
 						  const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& b)
 	{
 		// This requires hash table elements to support operator<. Since the hash table
@@ -3022,7 +3022,7 @@ namespace eastl
 
 	template <typename K, typename V, typename A, typename EK, typename Eq,
 			  typename H1, typename H2, typename H, typename RP, bool bC, bool bM, bool bU>
-	EASTL_REMOVE_AT_2024_APRIL inline bool operator>(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
+	[[deprecated]] inline bool operator>(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
 						  const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& b)
 	{
 		return b < a;
@@ -3031,7 +3031,7 @@ namespace eastl
 
 	template <typename K, typename V, typename A, typename EK, typename Eq,
 			  typename H1, typename H2, typename H, typename RP, bool bC, bool bM, bool bU>
-	EASTL_REMOVE_AT_2024_APRIL inline bool operator<=(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
+	[[deprecated]] inline bool operator<=(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
 						   const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& b)
 	{
 		return !(b < a);
@@ -3040,7 +3040,7 @@ namespace eastl
 
 	template <typename K, typename V, typename A, typename EK, typename Eq,
 			  typename H1, typename H2, typename H, typename RP, bool bC, bool bM, bool bU>
-	EASTL_REMOVE_AT_2024_APRIL inline bool operator>=(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
+	[[deprecated]] inline bool operator>=(const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& a,
 						   const hashtable<K, V, A, EK, Eq, H1, H2, H, RP, bC, bM, bU>& b)
 	{
 		return !(a < b);

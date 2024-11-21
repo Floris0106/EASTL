@@ -1250,10 +1250,10 @@ public:
 	EASTL_INTERNAL_DISABLE_DEPRECATED() // 'unwrap_iterator': was declared deprecated
 	
 	template <typename Iterator, typename = typename enable_if<is_iterator_wrapper<Iterator>::value, bool>::type>
-	EASTL_REMOVE_AT_2024_SEPT int validate_iterator(Iterator iter) const EA_NOEXCEPT { return validate_iterator(unwrap_iterator(iter)); }
+	[[deprecated]] int validate_iterator(Iterator iter) const EA_NOEXCEPT { return validate_iterator(unwrap_iterator(iter)); }
 
 	template <typename Iterator, typename = typename enable_if<is_iterator_wrapper<Iterator>::value, bool>::type>
-	EASTL_REMOVE_AT_2024_SEPT static bool validate_iterator_pair(Iterator first, Iterator last) EA_NOEXCEPT { return validate_iterator_pair(unwrap_iterator(first), unwrap_iterator(last)); }
+	[[deprecated]] static bool validate_iterator_pair(Iterator first, Iterator last) EA_NOEXCEPT { return validate_iterator_pair(unwrap_iterator(first), unwrap_iterator(last)); }
 
 	EASTL_INTERNAL_RESTORE_DEPRECATED()
 
@@ -1473,7 +1473,7 @@ private:
 
 	EASTL_INTERNAL_DISABLE_DEPRECATED() // 'is_iterator_wrapper': was declared deprecated
 	// Unwrapping interface, not part of the public API.
-	EASTL_REMOVE_AT_2024_SEPT iterator_type unwrap() const { return mIterator; }
+	[[deprecated]] iterator_type unwrap() const { return mIterator; }
 
 	// The unwrapper helpers need access to unwrap().
 	friend is_iterator_wrapper_helper<this_type, true>;
