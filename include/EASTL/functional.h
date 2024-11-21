@@ -1190,11 +1190,6 @@ namespace eastl
 	template <> struct hash<long double>
 		{ size_t operator()(long double val) const { return static_cast<size_t>(val); } };
 
-	#if defined(EA_HAVE_INT128) && EA_HAVE_INT128
-	template <> struct hash<uint128_t>
-		{ size_t operator()(uint128_t val) const { return static_cast<size_t>(val); } };
-	#endif
-
 
 	///////////////////////////////////////////////////////////////////////////
 	// string hashes

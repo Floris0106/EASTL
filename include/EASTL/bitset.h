@@ -702,28 +702,6 @@ namespace eastl
 #endif
 	}
 
-
-	#if EASTL_INT128_SUPPORTED
-		inline uint32_t GetFirstBit(eastl_uint128_t x)
-		{
-			if(x)
-			{
-				uint32_t n = 1;
-
-				if((x & UINT64_C(0xFFFFFFFFFFFFFFFF)) == 0) { n += 64; x >>= 64; }
-				if((x & 0xFFFFFFFF) == 0)                   { n += 32; x >>= 32; }
-				if((x & 0x0000FFFF) == 0)                   { n += 16; x >>= 16; }
-				if((x & 0x000000FF) == 0)                   { n +=  8; x >>=  8; }
-				if((x & 0x0000000F) == 0)                   { n +=  4; x >>=  4; }
-				if((x & 0x00000003) == 0)                   { n +=  2; x >>=  2; }
-
-				return (n - ((uint32_t)x & 1));
-			}
-
-			return 128;
-		}
-	#endif
-
 	template<typename UInt8>
 	eastl::enable_if_t<detail::is_word_type_v<UInt8> && sizeof(UInt8) == 1, uint32_t> GetLastBit(UInt8 x)
 	{
@@ -821,31 +799,6 @@ namespace eastl
 		return 64;
 #endif
 	}
-
-	#if EASTL_INT128_SUPPORTED
-		inline uint32_t GetLastBit(eastl_uint128_t x)
-		{
-			if(x)
-			{
-				uint32_t n = 0;
-				
-				eastl_uint128_t mask(UINT64_C(0xFFFFFFFFFFFFFFFF)); // There doesn't seem to exist compiler support for INT128_C() by any compiler. EAStdC's int128_t supports it though.
-				mask <<= 64;
-
-				if(x & mask)                         { n += 64; x >>= 64; }
-				if(x & UINT64_C(0xFFFFFFFF00000000)) { n += 32; x >>= 32; }
-				if(x & UINT64_C(0x00000000FFFF0000)) { n += 16; x >>= 16; }
-				if(x & UINT64_C(0x00000000FFFFFF00)) { n +=  8; x >>=  8; }
-				if(x & UINT64_C(0x00000000FFFFFFF0)) { n +=  4; x >>=  4; }
-				if(x & UINT64_C(0x00000000FFFFFFFC)) { n +=  2; x >>=  2; }
-				if(x & UINT64_C(0x00000000FFFFFFFE)) { n +=  1;           }
-
-				return n;
-			}
-
-			return 128;
-		}
-	#endif
 
 
 

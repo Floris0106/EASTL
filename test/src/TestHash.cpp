@@ -1491,10 +1491,6 @@ int TestHash()
 	    { VERIFY(HashTest<unsigned long int>{}(42) == 42); }
 	    { VERIFY(HashTest<long long int>{}(42) == 42); }
 	    { VERIFY(HashTest<unsigned long long int>{}(42) == 42); }
-
-	#if defined(EA_HAVE_INT128) && EA_HAVE_INT128
-	    { VERIFY(HashTest<uint128_t>{}(UINT128_C(0, 42)) == 42); }
-	#endif
     }
 
 	return nErrorCount;

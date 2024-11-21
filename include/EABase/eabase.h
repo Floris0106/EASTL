@@ -17,9 +17,6 @@
 // Identify the platform and declare the EA_xxxx defines
 #include <EABase/config/eaplatform.h>
 
-// Define common SI unit macros
-#include <EABase/eaunits.h>
-
 
 // ------------------------------------------------------------------------
 // The C++ standard defines size_t as a built-in type. Some compilers are
@@ -987,11 +984,3 @@
 #define EA_DISABLED             333-
 // NOTE: Numeric values for x will produce a parse error while empty values produce a divide by zero, and the test is a bool for proper negation behavior
 #define EA_IS_ENABLED(x) (333 == 333 * 111 / ((x 0) * (((x 0) == 333 ? 1 : 0) + ((x 0) == 111 ? 1 : 0))))
-
-
-
-// Define int128_t / uint128_t types.
-// NOTE(rparolin):  include file at the end because we want all the signed integral types defined.
-#ifdef __cplusplus
-	#include <EABase/int128.h>
-#endif

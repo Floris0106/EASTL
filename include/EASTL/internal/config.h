@@ -874,30 +874,6 @@ namespace eastl
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// EASTL_INT128_DEFINED
-//
-// Defined as 0 or 1.
-// Specifies whether eastl_int128_t/eastl_uint128_t have been typedef'd yet.
-// NB: these types are not considered fundamental, arithmetic or integral when using the EAStdC implementation.
-// this changes the compiler type traits defined in type_traits.h.
-// eg. is_signed<eastl_int128_t>::value may be false, because it is not arithmetic.
-//
-#ifndef EASTL_INT128_DEFINED
-	#if EASTL_INT128_SUPPORTED
-		#define EASTL_INT128_DEFINED 1
-
-		#if EASTL_GCC_STYLE_INT128_SUPPORTED
-			typedef __int128_t   eastl_int128_t;
-			typedef __uint128_t eastl_uint128_t;
-		#else
-			typedef  int128_t  eastl_int128_t;  // The EAStdC package defines an EA::StdC::int128_t and uint128_t type,
-			typedef uint128_t eastl_uint128_t;  // though they are currently within the EA::StdC namespace.
-		#endif
-	#endif
-#endif
-
-
-///////////////////////////////////////////////////////////////////////////////
 // EASTL_BITSET_WORD_TYPE_DEFAULT / EASTL_BITSET_WORD_SIZE_DEFAULT
 //
 // Defined as an integral power of two type, usually uint32_t or uint64_t.
@@ -924,7 +900,7 @@ namespace eastl
 			#define EASTL_BITSET_WORD_SIZE_DEFAULT 8
 		#endif
 	#elif (EA_PLATFORM_WORD_SIZE == 16)                     // EA_PLATFORM_WORD_SIZE is defined in EABase.
-		#define EASTL_BITSET_WORD_TYPE_DEFAULT uint128_t
+		#define EASTL_BITSET_WORD_TYPE_DEFAULT __uint128_t
 		#define EASTL_BITSET_WORD_SIZE_DEFAULT 16
 	#elif (EA_PLATFORM_WORD_SIZE == 8)
 		#define EASTL_BITSET_WORD_TYPE_DEFAULT uint64_t
