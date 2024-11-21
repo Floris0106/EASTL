@@ -13,7 +13,6 @@
 #include <EASTL/shared_array.h>
 #include <EASTL/shared_ptr.h>
 #include <EASTL/unique_ptr.h>
-#include <EASTL/weak_ptr.h>
 #include <eathread/eathread_thread.h>
 
 EA_DISABLE_ALL_VC_WARNINGS()
