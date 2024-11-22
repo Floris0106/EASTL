@@ -5,7 +5,6 @@
 
 #include "EASTLTest.h"
 #include <EASTL/allocator.h>
-#include <EASTL/allocator_malloc.h>
 #include <EASTL/fixed_allocator.h>
 #include <EASTL/list.h>
 #include <EAStdC/EAString.h>
@@ -204,38 +203,6 @@ static int TestFixedAllocator()
 EA_RESTORE_VC_WARNING()
 
 
-///////////////////////////////////////////////////////////////////////////////
-// TestAllocatorMalloc
-//
-static int TestAllocatorMalloc()
-{
-	int nErrorCount = 0;
-
-	{
-		typedef eastl::list<int, eastl::allocator_malloc> WidgetList;
-	 
-		WidgetList myList1;
-		WidgetList myList2;
-	 
-		myList1.push_back(1);
-		myList2.push_back(1);
-		EATEST_VERIFY(myList1 == myList2);
-
-		myList1.push_back(2);
-		myList1.sort();
-		myList2.push_front(2);
-		myList2.sort();
-		EATEST_VERIFY(myList1 == myList2);
-
-		#if EASTL_ALIGNED_MALLOC_AVAILABLE
-			
-		#endif
-	}
-
-	return nErrorCount;
-}
-
-
 
 #if EASTL_DLL
 	void* operator new[](size_t size, const char* pName, int flags, unsigned debugFlags, const char* file, int line);
@@ -325,7 +292,6 @@ int TestAllocator()
 	
 	nErrorCount += TestAllocationOffsetAndAlignment();
 	nErrorCount += TestFixedAllocator();
-	nErrorCount += TestAllocatorMalloc();
 	nErrorCount += TestSwapAllocator();
 
 	return nErrorCount;

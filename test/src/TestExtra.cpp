@@ -52,7 +52,6 @@ namespace eastl
 #include <EASTL/utility.h>
 #include <EASTL/memory.h>
 #include <EASTL/allocator.h>
-#include <EASTL/allocator_malloc.h>
 #include <EASTL/fixed_allocator.h>
 #include <EASTL/intrusive_list.h>
 #include <EASTL/numeric.h>

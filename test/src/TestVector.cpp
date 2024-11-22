@@ -10,7 +10,6 @@
 #include <EASTL/slist.h>
 #include <EASTL/algorithm.h>
 #include <EASTL/utility.h>
-#include <EASTL/allocator_malloc.h>
 #include <EASTL/unique_ptr.h>
 
 #include "ConceptImpls.h"

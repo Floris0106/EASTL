@@ -36,7 +36,6 @@
 #endif
 
 
-#include "EASTLTestAllocator.h"
 #include "EASTLTest.h"  // Include this last, as it enables compiler warnings.
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -130,11 +129,6 @@ int EASTLTest_CheckMemory_Imp(const char* pFile, int nLine)
 
 	#if defined(_DEBUG) && (defined(EA_COMPILER_MSVC) && defined(EA_PLATFORM_MICROSOFT))
 		if(!_CrtCheckMemory())
-			bMemoryOK = false;
-	#endif
-
-	#ifdef EA_DEBUG
-		if(!EASTLTest_ValidateHeap())
 			bMemoryOK = false;
 	#endif
 
@@ -251,19 +245,36 @@ void* MallocAllocator::allocate(size_t n, size_t, size_t, int)
 // CustomAllocator
 ///////////////////////////////////////////////////////////////////////////////
 
-void* CustomAllocator::allocate(size_t n, int flags)
+void* CustomAllocator::allocate(size_t n, int)
 {
-	return ::operator new[](n, get_name(), flags, 0, __FILE__, __LINE__);
+	#ifdef EA_PLATFORM_MICROSOFT
+		return _aligned_malloc(n, EASTL_ALLOCATOR_MIN_ALIGNMENT);
+	#else
+		void *p = nullptr;
+		posix_memalign(&p, EASTL_ALLOCATOR_MIN_ALIGNMENT, n);
+		return p;
+	#endif
 }
 
-void* CustomAllocator::allocate(size_t n, size_t alignment, size_t offset, int flags)
+void* CustomAllocator::allocate(size_t n, size_t alignment, size_t, int)
 {
-	return ::operator new[](n, alignment, offset, get_name(), flags, 0, __FILE__, __LINE__);
+	#ifdef EA_PLATFORM_MICROSOFT
+		return _aligned_malloc(n, alignment);
+	#else
+		void *p = nullptr;
+		alignment = alignment < sizeof( void *) ? sizeof( void *) : alignment;
+		posix_memalign(&p, alignment, n);
+		return p;
+	#endif
 }
 
 void  CustomAllocator::deallocate(void* p, size_t /*n*/)
 {
-	::operator delete((char*)p);
+	#ifdef EA_PLATFORM_MICROSOFT
+		_aligned_free(p);
+	#else
+		free(p);
+	#endif
 }
 
 

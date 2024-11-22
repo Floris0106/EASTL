@@ -8,7 +8,6 @@
 #include <EAStdC/EAString.h>
 #include <EASTL/string.h>
 #include <EASTL/algorithm.h>
-#include <EASTL/allocator_malloc.h>
 
 using namespace eastl;
 

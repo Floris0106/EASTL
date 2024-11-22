@@ -389,8 +389,8 @@ void  operator delete[](void* p, size_t alignment, size_t alignmentOffset, const
 			#define EASTDC_NEW_ALIGNED(alignment, offset, name) new(alignment, offset, name, 0, 0, __FILE__, __LINE__)
 			#define EASTDC_DELETE                               delete
 		#else
-			#define EASTDC_NEW(name)                            new(name, 0, 0, 0, 0)
-			#define EASTDC_NEW_ALIGNED(alignment, offset, name) new(alignment, offset, name, 0, 0, 0, 0)
+			#define EASTDC_NEW(name)                            new
+			#define EASTDC_NEW_ALIGNED(alignment, offset, name) new
 			#define EASTDC_DELETE                               delete
 		#endif
 	#endif

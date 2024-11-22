@@ -13,7 +13,6 @@
 #include <stdio.h>
 EA_DISABLE_VC_WARNING(4946)
 #include "EAMain/EAEntryPointMain.inl"
-#include "EASTLTestAllocator.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////

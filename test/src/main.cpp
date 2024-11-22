@@ -17,7 +17,6 @@ EA_RESTORE_ALL_VC_WARNINGS()
 
 
 #include "EAMain/EAEntryPointMain.inl"
-#include "EASTLTestAllocator.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Required by EASTL.
@@ -64,8 +63,6 @@ int EAMain(int argc, char* argv[])
 	int nErrorCount = 0;
 
 	EA::EAMain::PlatformStartup();
-
-	EASTLTest_SetGeneralAllocator();
 
 	nErrorCount += EASTLTest_CheckMemory();
 
