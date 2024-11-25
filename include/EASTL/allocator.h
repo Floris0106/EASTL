@@ -158,16 +158,8 @@ namespace eastl
 #ifndef EASTL_USER_DEFINED_ALLOCATOR // If the user hasn't declared that he has defined a different allocator implementation elsewhere...
 
 	EA_DISABLE_ALL_VC_WARNINGS()
-	#include <new>
+	#include <cstdlib>
 	EA_RESTORE_ALL_VC_WARNINGS()
-
-	#if !EASTL_DLL // If building a regular library and not building EASTL as a DLL...
-		// It is expected that the application define the following
-		// versions of operator new for the application. Either that or the
-		// user needs to override the implementation of the allocator class.
-		void* operator new[](size_t size, const char* pName, int flags, unsigned debugFlags, const char* file, int line);
-		void* operator new[](size_t size, size_t alignment, size_t alignmentOffset, const char* pName, int flags, unsigned debugFlags, const char* file, int line);
-	#endif
 
 	namespace eastl
 	{
