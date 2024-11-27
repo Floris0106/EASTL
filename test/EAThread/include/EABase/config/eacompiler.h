@@ -309,16 +309,15 @@
 	// This does not mean that all of C++20 or any particular feature of C++20 is supported
 	// by the compiler. It means that whatever C++20 support the compiler has is enabled.
  	//
-	// We cannot use (__cplusplus >= 202003L) alone because some compiler vendors have
+	// We cannot use (__cplusplus >= 202002L) alone because some compiler vendors have
 	// decided to not define __cplusplus like thus until they have fully completed their
 	// C++20 support.
 	#if !defined(EA_COMPILER_CPP20_ENABLED) && defined(__cplusplus)
- 		// TODO(rparoin): enable once a C++20 value for the __cplusplus macro has been published
-		// #if (__cplusplus >= 202003L)
-		//     #define EA_COMPILER_CPP20_ENABLED 1
-		// #elif defined(_MSVC_LANG) && (_MSVC_LANG >= 202003L) // C++20+
-		//     #define EA_COMPILER_CPP20_ENABLED 1
-		// #endif
+		#if (__cplusplus >= 202002L)
+		    #define EA_COMPILER_CPP20_ENABLED 1
+		#elif defined(_MSVC_LANG) && (_MSVC_LANG >= 202002L) // C++20+
+		    #define EA_COMPILER_CPP20_ENABLED 1
+		#endif
 	#endif
 
 
