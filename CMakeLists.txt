@@ -8,12 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED)
 
 project(EASTL CXX)
 
-if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
-    set(EASTL_ROOT_PROJECT ON)
-else()
-    set(EASTL_ROOT_PROJECT OFF)
-endif()
-
 option(EASTL_STD_ITERATOR_CATEGORY_ENABLED "Enable compatibility with std::iterator categories" OFF)
 
 include(CheckCXXCompilerFlag)
@@ -49,7 +43,7 @@ if (EASTL_STD_ITERATOR_CATEGORY_ENABLED)
     add_definitions(-DEASTL_STD_ITERATOR_CATEGORY_ENABLED=1)
 endif()
 
-if(EASTL_ROOT_PROJECT)
+if(PROJECT_IS_TOP_LEVEL)
     add_subdirectory(benchmark)
     add_subdirectory(test)
 endif()
