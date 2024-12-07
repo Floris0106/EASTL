@@ -302,7 +302,7 @@ namespace eastl
 	/// corresponding comparisons.
 	///
 	template <typename ForwardIterator>
-	ForwardIterator min_element(ForwardIterator first, ForwardIterator last)
+	EA_CONSTEXPR ForwardIterator min_element(ForwardIterator first, ForwardIterator last)
 	{
 		if(first != last)
 		{
@@ -334,7 +334,7 @@ namespace eastl
 	/// corresponding comparisons.
 	///
 	template <typename ForwardIterator, typename Compare>
-	ForwardIterator min_element(ForwardIterator first, ForwardIterator last, Compare compare)
+	EA_CONSTEXPR ForwardIterator min_element(ForwardIterator first, ForwardIterator last, Compare compare)
 	{
 		if(first != last)
 		{
@@ -366,7 +366,7 @@ namespace eastl
 	/// corresponding comparisons.
 	///
 	template <typename ForwardIterator>
-	ForwardIterator max_element(ForwardIterator first, ForwardIterator last)
+	EA_CONSTEXPR ForwardIterator max_element(ForwardIterator first, ForwardIterator last)
 	{
 		if(first != last)
 		{
@@ -398,7 +398,7 @@ namespace eastl
 	/// corresponding comparisons.
 	///
 	template <typename ForwardIterator, typename Compare>
-	ForwardIterator max_element(ForwardIterator first, ForwardIterator last, Compare compare)
+	EA_CONSTEXPR ForwardIterator max_element(ForwardIterator first, ForwardIterator last, Compare compare)
 	{
 		if(first != last)
 		{
@@ -514,7 +514,7 @@ namespace eastl
 		///    b3 = min(b1, b2, Function);
 		///
 		template <typename T, typename Compare>
-		inline const T&
+		inline EA_CONSTEXPR const T&
 		min(const T& a, const T& b, Compare compare)
 		{
 			return compare(b, a) ? b : a;
@@ -609,7 +609,7 @@ namespace eastl
 		/// the second.
 		///
 		template <typename T, typename Compare>
-		inline const T&
+		inline EA_CONSTEXPR const T&
 		max(const T& a, const T& b, Compare compare)
 		{
 			return compare(a, b) ? b : a;
@@ -633,7 +633,7 @@ namespace eastl
 	/// min(std::initializer_list)
 	///
 	template <typename T >
-	T min(std::initializer_list<T> ilist)
+	EA_CONSTEXPR T min(std::initializer_list<T> ilist)
 	{
 		return *eastl::min_element(ilist.begin(), ilist.end());
 	}
@@ -641,7 +641,7 @@ namespace eastl
 	/// min(std::initializer_list, Compare)
 	///
 	template <typename T, typename Compare>
-	T min(std::initializer_list<T> ilist, Compare compare)
+	EA_CONSTEXPR T min(std::initializer_list<T> ilist, Compare compare)
 	{
 		return *eastl::min_element(ilist.begin(), ilist.end(), compare);
 	}
@@ -650,7 +650,7 @@ namespace eastl
 	/// max(std::initializer_list)
 	///
 	template <typename T >
-	T max(std::initializer_list<T> ilist)
+	EA_CONSTEXPR T max(std::initializer_list<T> ilist)
 	{
 		return *eastl::max_element(ilist.begin(), ilist.end());
 	}
@@ -658,7 +658,7 @@ namespace eastl
 	/// max(std::initializer_list, Compare)
 	///
 	template <typename T, typename Compare>
-	T max(std::initializer_list<T> ilist, Compare compare)
+	EA_CONSTEXPR T max(std::initializer_list<T> ilist, Compare compare)
 	{
 		return *eastl::max_element(ilist.begin(), ilist.end(), compare);
 	}
@@ -675,7 +675,7 @@ namespace eastl
 	/// where N is distance(first, last).
 	///
 	template <typename ForwardIterator, typename Compare>
-	eastl::pair<ForwardIterator, ForwardIterator>
+	EA_CONSTEXPR eastl::pair<ForwardIterator, ForwardIterator>
 	minmax_element(ForwardIterator first, ForwardIterator last, Compare compare)
 	{
 		eastl::pair<ForwardIterator, ForwardIterator> result(first, first);
@@ -729,7 +729,7 @@ namespace eastl
 
 
 	template <typename ForwardIterator>
-	eastl::pair<ForwardIterator, ForwardIterator>
+	EA_CONSTEXPR eastl::pair<ForwardIterator, ForwardIterator>
 	minmax_element(ForwardIterator first, ForwardIterator last)
 	{
 		typedef typename eastl::iterator_traits<ForwardIterator>::value_type value_type;
@@ -769,7 +769,7 @@ namespace eastl
 	// want to do that. We could do it for scalars alone, though we'd have to decide if we are going to do that
 	// for all compilers, because it changes the return value from a pair of references to a pair of values.
 	template <typename T>
-	inline eastl::pair<const T&, const T&>
+	inline EA_CONSTEXPR eastl::pair<const T&, const T&>
 	minmax(const T& a, const T& b)
 	{
 		return (b < a) ? eastl::make_pair(b, a) : eastl::make_pair(a, b);
@@ -777,7 +777,7 @@ namespace eastl
 
 
 	template <typename T, typename Compare>
-	eastl::pair<const T&, const T&>
+	EA_CONSTEXPR eastl::pair<const T&, const T&>
 	minmax(const T& a, const T& b, Compare compare)
 	{
 		return compare(b, a) ? eastl::make_pair(b, a) : eastl::make_pair(a, b);
@@ -786,7 +786,7 @@ namespace eastl
 
 
 	template <typename T>
-	eastl::pair<T, T>
+	EA_CONSTEXPR eastl::pair<T, T>
 	minmax(std::initializer_list<T> ilist)
 	{
 		typedef typename std::initializer_list<T>::iterator iterator_type;
@@ -795,7 +795,7 @@ namespace eastl
 	}
 
 	template <typename T, class Compare>
-	eastl::pair<T, T>
+	EA_CONSTEXPR eastl::pair<T, T>
 	minmax(std::initializer_list<T> ilist, Compare compare)
 	{
 		typedef typename std::initializer_list<T>::iterator iterator_type;
